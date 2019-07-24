@@ -1,0 +1,100 @@
+﻿@model Jarchim.Models.mCategory
+@{
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        ویرایش مجموعه
+    </h1>
+</section>
+<!-- Content Header (Page header) -->
+@using (Html.BeginForm("Edit", "mCategory", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    if (ViewBag.error != null)
+    {
+        <div class="col-md-8 form-group" style="margin-top:30px;margin-right:3px;">
+            <div class="alert alert-dismissable alert-danger">
+                @ViewBag.error
+            </div>
+        </div>
+    }
+        <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- right column -->
+            <div class="col-md-8">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <!-- form start -->
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            @Html.TextBoxFor(model => model.cat_id, new { @type = "hidden" })
+                            <div class="form-group">
+                                <input type="hidden" name="cat_baner_img" id="cat_baner_img" value="@Model.cat_baner_img" />
+                                <label class="col-sm-3 control-label" for="img_file1">تصویر بنر:</label>
+                                <div class="col-sm-3">
+                                    <img src="~/images/category/@Model.cat_baner_img" width="70" height="70" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" name="img_file1" id="" value="@Model.cat_baner_img" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="cat_icon_img" id="cat_icon_img" value="@Model.cat_icon_img" />
+                                <label class="col-sm-3 control-label" for="img_file2">تصویر آیکون:</label>
+                                <div class="col-sm-3">
+                                    <img src="~/images/category/@Model.cat_icon_img" width="70" height="70" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" name="img_file2" id="cat_icon_img" value="@Model.cat_icon_img" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="category_title">عنوان : </label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.cat_title, new { @placeholder = "عنوان", @class = "form-control force" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="category_href">نشانی : </label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.cat_href, new { @placeholder = "نشانی ", @class = "form-control force" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="top_id">والد : </label>
+                                <div class="col-sm-6">
+                                    <select class="form-control select2" name="top_id" id="top_id">
+                                        <option value="0">-</option>
+                                        @{
+                                            foreach (var vCat in JarchimDb.tbl_category)
+                                            {
+                                                if (vCat.top_id == 0)
+                                                {
+                                                    <option @if (Model.top_id == vCat.cat_id) { @: selected
+                                                                                                                                            } value="@vCat.cat_id">
+                                                        @vCat.cat_title
+                                                    </option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-info pull-right sub_validation">ثبت</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </section>
+        <!-- /.content -->
+                                            }

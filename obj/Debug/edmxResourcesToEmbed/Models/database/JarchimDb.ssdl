@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JarchimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_about">
+    <Key>
+      <PropertyRef Name="about_us_id" />
+    </Key>
+    <Property Name="about_us_id" Type="int" Nullable="false" />
+    <Property Name="about_us_img" Type="nvarchar" MaxLength="150" />
+    <Property Name="about_us_exp_one" Type="ntext" />
+    <Property Name="about_us_exp_two" Type="ntext" />
+    <Property Name="about_us_title" Type="nvarchar" MaxLength="150" />
+    <Property Name="about_us_img_alt" Type="nvarchar" MaxLength="50" />
+    <Property Name="about_us_type" Type="int" />
+    <Property Name="about_exp_three" Type="ntext" />
+  </EntityType>
+  <EntityType Name="tbl_ad">
+    <Key>
+      <PropertyRef Name="ad_id" />
+    </Key>
+    <Property Name="ad_id" Type="bigint" Nullable="false" />
+    <Property Name="ad_name" Type="nvarchar" MaxLength="250" />
+    <Property Name="ad_price" Type="nvarchar" MaxLength="150" />
+    <Property Name="copen_id" Type="bigint" />
+    <Property Name="ad_exp_one" Type="nvarchar(max)" />
+    <Property Name="ad_from_date" Type="datetime" />
+    <Property Name="ad_visit" Type="int" />
+    <Property Name="ad_like" Type="int" />
+    <Property Name="ad_dislike" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="ad_exp_two" Type="nvarchar(max)" />
+    <Property Name="ad_summery" Type="nvarchar(max)" />
+    <Property Name="ad_buy_count" Type="int" />
+    <Property Name="ad_city" Type="int" />
+    <Property Name="ad_cat" Type="int" Nullable="false" />
+    <Property Name="ad_exp_three" Type="nvarchar(max)" />
+    <Property Name="ad_to_date" Type="datetime" />
+    <Property Name="ad_save_per" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="int" Nullable="false" />
+    <Property Name="cat_title" Type="nvarchar" MaxLength="150" />
+    <Property Name="top_id" Type="int" />
+    <Property Name="cat_href" Type="nvarchar" MaxLength="250" />
+    <Property Name="cat_baner_img" Type="nvarchar" MaxLength="250" />
+    <Property Name="cat_icon_img" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_city">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="city_title" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tbl_comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="comment_id" Type="int" Nullable="false" />
+    <Property Name="ad_id" Type="int" />
+    <Property Name="top_id" Type="int" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="200" />
+    <Property Name="user_text" Type="ntext" />
+    <Property Name="user_ip_addr" Type="nvarchar" MaxLength="50" />
+    <Property Name="comment_date" Type="datetime2" Precision="7" />
+    <Property Name="c_confirm" Type="bit" />
+    <Property Name="c_read" Type="bit" />
+    <Property Name="c_like" Type="int" />
+    <Property Name="c_dislike" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_contact">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="bigint" Nullable="false" />
+    <Property Name="contact_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="contact_email" Type="nvarchar" MaxLength="255" />
+    <Property Name="contact_phone" Type="nvarchar" MaxLength="11" />
+    <Property Name="contact_text" Type="ntext" />
+    <Property Name="contact_is_read" Type="bit" />
+    <Property Name="contact_date" Type="datetime2" Precision="7" />
+    <Property Name="contact_subject" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbl_copen">
+    <Key>
+      <PropertyRef Name="copen_id" />
+    </Key>
+    <Property Name="copen_id" Type="bigint" Nullable="false" />
+    <Property Name="ad_id" Type="bigint" />
+    <Property Name="from_date" Type="datetime2" Precision="7" />
+    <Property Name="to_date" Type="datetime2" Precision="7" />
+    <Property Name="copen_per" Type="float" />
+  </EntityType>
+  <EntityType Name="tbl_img_ad">
+    <Key>
+      <PropertyRef Name="img_id" />
+      <PropertyRef Name="ad_id" />
+    </Key>
+    <Property Name="img_id" Type="bigint" Nullable="false" />
+    <Property Name="ad_id" Type="bigint" Nullable="false" />
+    <Property Name="ad_img" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ad_img_title" Type="nvarchar" MaxLength="100" />
+    <Property Name="ad_img_alt" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_newsletter">
+    <Key>
+      <PropertyRef Name="newsletter_id" />
+    </Key>
+    <Property Name="newsletter_id" Type="bigint" Nullable="false" />
+    <Property Name="newsletter_email" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="ad_id" Type="int" />
+    <Property Name="order_count" Type="int" />
+    <Property Name="order_date" Type="datetime2" Precision="7" />
+    <Property Name="order_status" Type="int" />
+    <Property Name="trans_id" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_rating">
+    <Key>
+      <PropertyRef Name="rat_id" />
+    </Key>
+    <Property Name="rat_id" Type="float" Nullable="false" />
+    <Property Name="ad_id" Type="bigint" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="star_count" Type="decimal" Precision="1" Scale="1" />
+  </EntityType>
+  <EntityType Name="tbl_shopping_cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="int" Nullable="false" />
+    <Property Name="cookie_id" Type="float" />
+    <Property Name="ad_id" Type="int" />
+    <Property Name="cart_count" Type="int" />
+    <Property Name="cart_date" Type="date" />
+    <Property Name="cart_payment" Type="bit" />
+    <Property Name="cart_id_get" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_slider">
+    <Key>
+      <PropertyRef Name="slider_id" />
+    </Key>
+    <Property Name="slider_id" Type="int" Nullable="false" />
+    <Property Name="slider_img" Type="nvarchar" MaxLength="1000" />
+    <Property Name="slider_link" Type="nvarchar" MaxLength="50" />
+    <Property Name="slider_sort" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_temp_shopping">
+    <Key>
+      <PropertyRef Name="temp_id" />
+    </Key>
+    <Property Name="temp_id" Type="bigint" Nullable="false" />
+    <Property Name="cart_id_get" Type="int" />
+    <Property Name="ad_id" Type="int" />
+    <Property Name="temp_count" Type="int" />
+    <Property Name="temp_date" Type="datetime2" Precision="7" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="trans_id" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="200" />
+    <Property Name="user_pass" Type="nvarchar" MaxLength="100" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="user_birthday" Type="datetime2" Precision="7" />
+    <Property Name="user_mobile" Type="nvarchar" MaxLength="11" />
+    <Property Name="user_phone" Type="nvarchar" MaxLength="11" />
+    <Property Name="user_province" Type="nvarchar" MaxLength="100" />
+    <Property Name="user_city" Type="nvarchar" MaxLength="100" />
+    <Property Name="user_postal_code" Type="nvarchar" MaxLength="20" />
+    <Property Name="user_addr" Type="nvarchar" MaxLength="255" />
+    <Property Name="user_pic" Type="nvarchar" MaxLength="255" />
+    <Property Name="user_access" Type="int" />
+    <Property Name="user_reg_date" Type="datetime2" Precision="7" />
+    <Property Name="user_is_sex" Type="bit" />
+  </EntityType>
+  <Association Name="FK_tbl_ad_tbl_ad">
+    <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+    <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ad">
+        <PropertyRef Name="ad_id" />
+      </Principal>
+      <Dependent Role="tbl_ad1">
+        <PropertyRef Name="ad_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ad_tbl_ad1">
+    <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+    <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ad">
+        <PropertyRef Name="ad_id" />
+      </Principal>
+      <Dependent Role="tbl_ad1">
+        <PropertyRef Name="ad_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JarchimModelStoreContainer">
+    <EntitySet Name="tbl_about" EntityType="Self.tbl_about" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ad" EntityType="Self.tbl_ad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_city" EntityType="Self.tbl_city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_comment" EntityType="Self.tbl_comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_contact" EntityType="Self.tbl_contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_copen" EntityType="Self.tbl_copen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_img_ad" EntityType="Self.tbl_img_ad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_newsletter" EntityType="Self.tbl_newsletter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_order" EntityType="Self.tbl_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_rating" EntityType="Self.tbl_rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_shopping_cart" EntityType="Self.tbl_shopping_cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_slider" EntityType="Self.tbl_slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_temp_shopping" EntityType="Self.tbl_temp_shopping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_ad_tbl_ad" Association="Self.FK_tbl_ad_tbl_ad">
+      <End Role="tbl_ad" EntitySet="tbl_ad" />
+      <End Role="tbl_ad1" EntitySet="tbl_ad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ad_tbl_ad1" Association="Self.FK_tbl_ad_tbl_ad1">
+      <End Role="tbl_ad" EntitySet="tbl_ad" />
+      <End Role="tbl_ad1" EntitySet="tbl_ad" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

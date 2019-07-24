@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Jarchim.Models.mAdImg>
+@{
+    ViewBag.Title = "فهرست تصاویر";
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();}
+<!-- Content Header (Page header) -->
+<section class="content-header" style="margin-left:15px;">
+    <div class="row my-rows text-left">
+        <button class="btn btn-danger delete" type="submit">
+            <span class="fa fa-trash"></span>
+            حذف
+        </button>
+        @Html.ActionLink("جدید", "Create", "mAdImg", "", new { @class = "btn btn-success" })
+    </div>
+</section>
+<div class="col col-md-12" style="margin-top:30px;">
+    <div class="col col-md-3 form-group">
+        <label class="col-sm-4 control-label" for="ad_city"> شهر :</label>
+        <div class="col-sm-8">
+            @{
+                var qCity = from n in JarchimDb.tbl_city
+                            select n;
+            }
+            <select class="form-control select2" id="ad_city" name="ad_city">
+                <option value="0">همه</option>
+                @foreach (var vCity in qCity)
+            {
+                    <option value="@vCity.city_id">
+                        @vCity.city_title
+                    </option>
+                }
+
+            </select>
+
+        </div>
+    </div>
+    <div class="col col-md-4 form-group">
+        <label class="col-sm-5 control-label" for="ad_cat"> دسته بندی :</label>
+        <div class="col-sm-7">
+            @{
+                var qCat = from n in JarchimDb.tbl_category
+                           select n;
+            }
+            <select class="form-control select2" id="ad_cat" name="ad_cat">
+                <option value="0">همه</option>
+                @foreach (var vCat in qCat)
+            {
+                    <option value="@vCat.cat_id">
+                        @vCat.cat_title
+                    </option>
+                }
+
+            </select>
+
+        </div>
+    </div>
+    <div class="col col-md-4 form-group">
+        <label class="col-sm-3 control-label" for="ad_id">آگهی :</label>
+        <div class="col-sm-9">
+            @{
+                var qAd = from n in JarchimDb.tbl_ad
+                           select n;
+            }
+            <select class="form-control select2" id="ad_id" name="ad_id">
+                <option value="0">همه</option>
+                @foreach (var vAd in qAd)
+            {
+                    <option value="@vAd.ad_id">
+                        @vAd.ad_name
+                    </option>
+                }
+
+            </select>
+        </div>
+    </div>
+    <div class="col col-md-1 form-group">
+        <button class="btn btn-success search_ad" type="submit">
+            جستجو
+        </button>
+    </div>
+</div>
+<div id="search-ad-result">
+    @Html.Partial("_Index")
+</div>
+@section crudScript{
+    <script>
+
+        function get_current_url() {
+            project = window.location.pathname.split('/');
+            url = window.location.protocol + '//' + window.location.host + '/' + project[1];
+            return url;
+        }
+        $('.delete').click(function (event) {
+            url = get_current_url();
+            event.preventDefault();
+            var r = confirm("آیا از حذف رکورد اطمینان دارید؟");
+            if (r == true) {
+                var pIds = $('input[name="radioSelect"]:radio:checked').val();
+                alert(pIds)
+                alert()
+                $.ajax({
+                    url: url + '/RemoveAdImg',
+                    dataType: "json",
+                    data: { "pId": pIds },
+                    type: "POST",
+                    async: "true",
+                    cache: false,
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        $("#" + pIds).remove()
+                    }
+                });
+            }
+        });
+        function fGetUrl() {
+            url = window.location.protocol + '//' + window.location.host + '/'
+            return url;
+        }
+        vUrl = fGetUrl();
+        $("body").on("click", ".search_ad", function () {
+            vAdCity = $("#ad_city").val()
+            vAdCat = $("#ad_cat").val()
+            vAdId = $("#ad_id").val()
+            if (vAdCat == 0 || vAdCity == 0 || vAdId == 0) {
+                alert("برای جستجو انتخاب هر سه آیتم الزامی است")
+                return 0;
+            }
+            pData = { ad_city: vAdCity, ad_cat: vAdCat, ad_id: vAdId }
+            $.ajax({
+                url: vUrl + "mAdImg" + "/" + "Index",
+                type: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify(pData),
+                cache: false,
+                async: false,
+                beforeSend: function () {
+                    $('span.psd-loader').css('display', 'block')
+                },
+                success: function (data) {
+                    $('span.psd-loader').css('display', 'none')
+                    vPartial = data
+                },
+                error: function (errormessage) {
+                    alert(errormessage)
+                    $('span.psd-loader').css('display', 'none')
+                }
+            });
+            $("#search-ad-result").html(vPartial)
+
+        });
+    </script>
+}
+
+
+

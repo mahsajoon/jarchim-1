@@ -1,0 +1,840 @@
+﻿@model Jarchim.Models.mHome
+@{
+    ViewBag.Title = "";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();
+    int i = 0;
+    string vAdClass4 = "col-lg-4";
+    string vAdClass6 = "col-lg-6";
+}
+<style>
+    body {
+        text-align: right;
+    }
+
+    h1 {
+        color: #396;
+        font-weight: 100;
+        font-size: 40px;
+        margin: 40px 0px 20px;
+    }
+
+    #clockdiv {
+        font-family: sans-serif;
+        color: #fff;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 30px;
+    }
+
+        #clockdiv > div {
+            padding: 10px;
+            border-radius: 3px;
+            background: #00BF96;
+            display: inline-block;
+        }
+
+        #clockdiv div > span {
+            padding: 15px;
+            border-radius: 3px;
+            background: #00816A;
+            display: inline-block;
+        }
+
+    .smalltext {
+        padding-top: 5px;
+        font-size: 16px;
+    }
+</style>
+
+@*<link href="~/Content/jquery.rateyo.min.css" rel="stylesheet" />*@
+<link href="~/Content/jquery.rateyo.min.css" rel="stylesheet" />
+<script src="~/js/app/jquery.min.js"></script>
+<script src="~/js/app/jquery.rateyo.js"></script>
+<div id="inconsistency">
+ <!-- Welcome Area Start -->
+ <section class="welcome-area">
+  <div class="welcome-slides owl-carousel">
+   <!-- Single Welcome Slide -->
+   @foreach (var vSlider in Model.aSlider)
+   {
+    <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(../../images/slider/@vSlider.slider_img);" data-img-url="../../images/slider/@vSlider.slider_img">
+     <!-- Welcome Content -->
+     <div class="welcome-content h-100">
+      <div class="container h-100">
+       <div class="row h-100 align-items-center">
+        <!-- Welcome Text -->
+        <div class="col-12">
+         @*<div class="welcome-text text-center">
+              <h6 data-animation="fadeInLeft" data-delay="200ms">Hotel &amp; Resort</h6>
+              <h2 data-animation="fadeInLeft" data-delay="500ms">Welcome To Roberto</h2>
+              <a href="#" class="btn roberto-btn btn-2" data-animation="fadeInLeft" data-delay="800ms">Discover Now</a>
+          </div>*@
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   }
+  </div>
+ </section>
+ <!-- Welcome Area End -->
+ <section class="roberto-about-area section-padding-100-0">
+  <!-- Hotel Search Form Area -->
+  <div class="hotel-search-form-area">
+   <div class="container-fluid">
+    <div class="hotel-search-form">
+     <form action="#" method="post">
+      <div class="row justify-content-between align-items-end">
+       @*<div class="col-6 col-md-2 col-lg-3">
+         <label for="checkIn">Check In</label>
+         <input type="date" class="form-control" id="checkIn" name="checkin-date">
+        </div>
+        <div class="col-6 col-md-2 col-lg-3">
+         <label for="checkOut">Check Out</label>
+         <input type="date" class="form-control" id="checkOut" name="checkout-date">
+        </div>*@
+       <div class="col-12 col-md-3">
+        <button type="button" onclick="fSearchAds()" class="form-control btn roberto-btn w-100">
+         جستجو
+         @*@Html.RouteLink(@vCategory.cat_title, "PostPaging2", new { action = "ads", controller = "category", page = (@vCategory.cat_id), title = @vCategory.cat_title }, new { })*@
+        </button>
+       </div>
+       <div class="col-4 col-md-2">
+        <label for="room">تخفیف</label>
+        <select name="room" id="ad_save_per" multiple  class="form-control chosen-select" style="display: none;">
+         <option value="90">90 درصد</option>
+         <option value="80">80 درصد</option>
+         <option value="70">70 درصد</option>
+         <option value="60">60 درصد</option>
+         <option value="50">50 درصد</option>
+         <option value="40">40 درصد</option>
+        </select><div class="nice-select form-control" tabindex="0">
+         <span class="current">همه تخفیف ها</span>
+         <ul class="list" style="overflow: scroll;height: 300px">
+          <li data-value="90" class="option selected"> تا 90 درصد</li>
+          <li data-value="80" class="option">تا 80 درصد</li>
+          <li data-value="70" class="option">نا 70 درصد</li>
+          <li data-value="60" class="option"> تا 60 درصد</li>
+          <li data-value="40" class="option"> تا 40 درصد</li>
+          <li data-value="50" class="option"> تا 50 درصد</li>
+          <li data-value="30" class="option"> تا 30 درصد</li>
+          <li data-value="20" class="option"> تا 20 درصد</li>
+          <li data-value="10" class="option"> تا 10 درصد</li>
+         </ul>
+        </div>
+        
+        
+
+       </div>
+       <div class="col-4 col-md-2">
+        <label for="adults">دسته بندی</label>
+        <select name="adults" id="cat_id" class="form-control" style="display: none;">
+         @foreach (var vCategory in Model.aCategory)
+         {
+          <option value="@vCategory.cat_id">@vCategory.cat_title</option>
+         }
+        </select>
+        <div class="nice-select form-control" tabindex="0">
+         <span class="current">همه دسته بندی ها</span>
+         <ul class="list" style="overflow: scroll;height: 300px">
+          <li data-value="0" class="option selected">همه دسته بندی ها</li>
+          @foreach (var vCategory in Model.aCategory)
+          {
+           <li data-value="@vCategory.cat_id" class="option">@vCategory.cat_title</li>
+          }
+         </ul>
+        </div>
+       </div>
+       <div class="col-4 col-md-2 col-lg-2">
+        <label for="children">شهر</label>
+        <select name="children" id="city_id" class="form-control" style="display: none;">
+    
+            @foreach (var vCity in Model.aCity)
+         {
+          <option value="@vCity.city_id">@vCity.city_title</option>
+         }
+        </select><div class="nice-select form-control" tabindex="0">
+         <span class="current">همه شهرها</span>
+         <ul class="list" style="overflow: scroll;height: 300px">
+          <li data-value="0" class="option selected">همه شهرها</li>
+          @foreach (var vCity in Model.aCity)
+          {
+           <li data-value="@vCity.city_id" class="option">@vCity.city_title</li>
+          }
+         </ul>
+        </div>
+       </div>
+
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </section>
+
+  <div class="site-section bg-light">
+   <div class="container">
+    
+@if (Model.aRestaurantCofes.Count > 0)
+{
+ <div class="row">
+  <div class="col-12">
+   <h2 class="h5 mb-4 text-black text-right">کافه و رستوران</h2>
+  </div>
+ </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aRestaurantCofes)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images//icon//polaroid-camera.svg)"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+               @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })
+          </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span id="@item.ad_id"></span>
+           <script>
+  $(function () {
+   $("#@item.ad_id").rateYo({
+    rating: @item.rating_avg,
+    spacing: "5px",
+    starWidth: "15px"
+    //onSet: function(rating, rateYoInstance) {
+
+    // //alert("Rating is set to: " + rating);
+    //}
+   });
+  });
+           </script>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+}
+@if (Model.aArtTheater.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right"> هنر و تئاتر </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aArtTheater)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })         
+           </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+  }
+@if (Model.aEducational.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right"> آموزشی </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aEducational)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })
+          </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+}
+@if (Model.aSportRecreation.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right"> تفریحی ورزشی </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13 ">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aSportRecreation)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })         
+           </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+}
+@if (Model.aHealthMedicine.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right">  سلامتی پزشکی </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aHealthMedicine)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })          
+          </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+}
+@if (Model.aBeautyCosmetics.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right">  زیبایی و آرایشی  </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aBeautyCosmetics)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })         
+           </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+}
+@if (Model.aServices.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right">خدمات</h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aServices)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })        
+           </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+
+    </div>
+}
+@if (Model.aTourTravel.Count > 0)
+{
+    <div class="row">
+     <div class="col-12">
+      <h2 class="h5 mb-4 text-black text-right"> تور و سفر </h2>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-12  block-13">
+      <div class="owl-carousel nonloop-block-13">
+       @foreach (var item in Model.aTourTravel)
+       {
+        <div class="d-block d-md-flex listing vertical">
+         @if (item.aAdImg.Count > 0)
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url(../../images/ads/@item.aAdImg[0].ad_img)"></a>
+         }
+         else
+         {
+          <a href="listings-single.html" class="img d-block" style="background-image: url('../../images//icon//polaroid-camera.svg')"></a>
+         }
+         <div class="lh-content">
+          <span class="category">@item.cat_name</span>
+          <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+          <h3 class="text-right">
+              @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })          
+          </h3>
+          @*<address>Don St, Brooklyn, New York</address>*@
+          <p class="mb-0">
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-warning"></span>
+           <span class="icon-star text-secondary"></span>
+           <span class="review">(@item.ad_visit بازدید)</span>
+          </p>
+         </div>
+        </div>
+       }
+      </div>
+     </div>
+    </div>
+}
+   </div>
+  </div>
+
+@if (Model.aMostVisit.Count > 0)
+{
+ <div class="site-section" data-aos="fade">
+  <div class="container">
+   <div class="row justify-content-center mb-5">
+    <div class="col-md-7 text-center border-primary">
+     <h2 class="font-weight-light text-primary">پربازدیدترین </h2>
+     @*<p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>*@
+    </div>
+   </div>
+   <div class="row">
+    @foreach (var item in Model.aMostVisit)
+    {
+     <div class="col-md-6 mb-4 mb-lg-4 @if (i == 3 || i == 4)
+     {  @vAdClass6
+     }
+     else
+     { @vAdClass4} ">
+      <div class="listing-item">
+       <div class="listing-image">
+        @foreach (var vImg in item.aAdImg)
+        {
+         if (vImg.ad_id == vImg.img_id)
+         {
+          if (item.aAdImg.Count > 0)
+          {
+           <img src="~/images/ads/@vImg.ad_img" alt="Image" class="img-fluid">
+          }
+          else
+          {
+           <img src="~/images/icon/polaroid-camera.svg" alt="Image" class="img-fluid">
+          }
+         }
+         break;
+        }
+       </div>
+       <div class="listing-item-content">
+        <a href="#" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+        <a class="px-3 mb-3 category" href="#">@item.cat_name</a>
+        <h2 class="mb-1">
+            @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })      
+        </h2>
+       <span class="address">@item.ad_price</span>
+      </div>
+     </div>
+    </div>
+     i = i + 1;
+    }
+   </div>
+  </div>
+ </div>
+}
+@if (Model.aSpecialOffer.Count > 0)
+{
+ <!-- Our Room Area Start -->
+ <section class="roberto-rooms-area">
+  <div class="rooms-slides owl-carousel">
+   <!-- Single Room Slide -->
+   @foreach (var item in Model.aSpecialOffer)
+   {
+    <div class="single-room-slide d-flex align-items-center">
+     <!-- Thumbnail -->
+     @foreach (var vImg in item.aAdImg)
+     {
+      if (item.ad_id == vImg.img_id)
+      {   <div class="room-thumbnail h-100 bg-img" style="background-image: url(../../images/ads/@vImg.ad_img);"></div>
+       break;
+      }
+     }
+     <!-- Content -->
+     <div class="room-content">
+      <h2 data-animation="fadeInUp" data-delay="100ms">جارچیم ویژه</h2>
+      <h4 data-animation="fadeInUp" data-delay="300ms">
+           @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { @style = "color:white" })
+      </h4>
+      <ul class="room-feature" data-animation="fadeInUp" data-delay="500ms">
+       <li><span><i class="fa fa-check"></i>مهلت استفاده:</span> <span>@item.ad_to_date</span></li>
+       <li><span><i class="fa fa-check"></i> قیمت:</span> <span>@item.ad_price</span></li>
+       <li><span><i class="fa fa-check"></i> توضیحات:</span> <span>@item.ad_summery</span></li>
+      </ul>
+      <a href="#" class="btn roberto-btn mt-30" data-animation="fadeInUp" data-delay="700ms">مشاهده</a>
+     </div>
+    </div>
+   }
+  </div>
+ </section>
+}
+
+ <!-- Our Room Area End -->
+ @if (Model.aLastMoment.Count > 0)
+ {
+  <section class="roberto-project-area" style="margin-top: 30px;">
+   <!-- Projects Slide -->
+   <div class="container">
+    <div class="row mb-5">
+     <div class="col-md-12 text-right border-primary" dir="rtl">
+      <h2 class="font-weight-light text-primary">جارچیم لحظه آخری</h2>
+     </div>
+    </div>
+   </div>
+   <div class="projects-slides owl-carousel">
+    @foreach (var item in Model.aLastMoment)
+    {
+        <!-- Single Project Slide -->
+     foreach (var vImg in item.aAdImg)
+     {
+      if (item.ad_id == vImg.ad_id)
+      {
+       <div class="single-project-slide active bg-img" style="background-image: url(../images/ads/@vImg.ad_img);">
+        <!-- Project Text -->
+        <div class="project-content">
+         <div class="text">
+          <div id="@item.ad_id">
+           <div>
+            <span class="days"></span>
+            <div class="smalltext">روز</div>
+           </div>
+           <div>
+            <span class="hours"></span>
+            <div class="smalltext">ساعت</div>
+           </div>
+           <div>
+            <span class="minutes"></span>
+            <div class="smalltext">دقیقه</div>
+           </div>
+           <div>
+            <span class="seconds"></span>
+            <div class="smalltext">ثانیه</div>
+           </div>
+          </div>
+<script>
+ var deadline = new Date(Date.parse(new Date()) + @item.timer_string);
+ initializeClock('@item.ad_id', deadline);
+</script>
+          <h6>
+
+           @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })
+          </h6>
+          <h5>@item.ad_price</h5>
+         </div>
+        </div>
+        <!-- Hover Effects -->
+        <div class="hover-effects">
+         <div class="text">
+          <h6>@item.ad_name</h6>
+          <h5>@item.ad_price</h5>
+          <p>@item.ad_summery</p>
+         </div>
+         <a href="#" class="btn project-btn">جزییات بیشتر<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+        </div>
+       </div>
+       break;
+      }
+     }
+    }
+   </div>
+
+  </section>
+ }
+ @if (Model.aTodayOffer.Count > 0) {
+  <div class="site-section bg-light">
+   <div class="container">
+    <div class="row mb-5">
+     <div class="col-md-12 text-right border-primary" dir="rtl">
+      <h2 class="font-weight-light text-primary">جارچیم امروز</h2>
+     </div>
+    </div>
+    <div class="row mt-5">
+     @foreach (var vToday in Model.aTodayOffer)
+     {
+      <div class="col-lg-6">
+       <div class="d-block d-md-flex listing">
+        @foreach (var vImg in vToday.aAdImg)
+        {
+         if (vToday.ad_id == vImg.ad_id)
+         {  <a href="#" class="img d-block" style="background-image: url('../images/ads/@vImg.ad_img')"></a>
+          break;
+         }
+        }
+        <div class="lh-content">
+         <span class="category">@vToday.cat_name</span>
+         <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+         <h3>
+          @Html.RouteLink(vToday.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (vToday.ad_cat), page = (vToday.ad_id), title = vToday.ad_name }, new { })
+         </h3>
+         <address>@vToday.ad_summery</address>
+         <p class="mb-0">
+          <span class="icon-star text-warning"></span>
+          <span class="icon-star text-warning"></span>
+          <span class="icon-star text-warning"></span>
+          <span class="icon-star text-warning"></span>
+          <span class="icon-star text-secondary"></span>
+          <span class="review">(@vToday.ad_visit بازدید)</span>
+         </p>
+        </div>
+       </div>
+      </div>
+     }
+    </div>
+
+   </div>
+  </div>
+ }
+
+
+ <!-- Call To Action Area Start -->
+ <section class="roberto-cta-area" style="margin: 40px 0;">
+  <div class="container">
+   <div class="cta-content bg-img bg-overlay jarallax" style="background-image: url(../../img/bg-img/9.jpg);">
+    <div class="row align-items-center text-right">
+     <div class="col-12 col-md-3 text-right">
+      <a href="~/home/Contact" class="btn roberto-btn mb-50">اطلاعات تماس</a>
+     </div>
+     <div class="col-12 col-md-9">
+      <div class="cta-text mb-50">
+       <h4>برای کسب اطلاعات بیشتر در مورد نمایش آگهی خود با ما تماس بگیرید.</h4>
+       @*<h6> (+12) 345-678-9999</h6>*@
+      </div>
+     </div>
+
+    </div>
+   </div>
+  </div>
+ </section>
+ <!-- Call To Action Area End -->
+ <!-- Partner Area Start -->
+ @*<div class="partner-area">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="partner-logo-content d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
+                      <!-- Single Partner Logo -->
+                      <a href="#" class="partner-logo"><img src="~/img/core-img/p1.png" alt=""></a>
+                      <!-- Single Partner Logo -->
+                      <a href="#" class="partner-logo"><img src="~/img/core-img/p2.png" alt=""></a>
+                      <!-- Single Partner Logo -->
+                      <a href="#" class="partner-logo"><img src="~/img/core-img/p3.png" alt=""></a>
+                      <!-- Single Partner Logo -->
+                      <a href="#" class="partner-logo"><img src="~/img/core-img/p4.png" alt=""></a>
+                      <!-- Single Partner Logo -->
+                      <a href="#" class="partner-logo"><img src="~/img/core-img/p5.png" alt=""></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>*@
+ <!-- Partner Area End -->
+
+</div>
+<script>
+     // Getter
+     var onSet = $("#rateYo").rateYo("option", "onSet"); //returns the function
+     // Setter
+     $("#rateYo").rateYo("option", "onSet", function () {
+      console.log("This is a new function");
+     });
+</script>
+
+<script>
+ function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+   'total': t,
+   'days': days,
+   'hours': hours,
+   'minutes': minutes,
+   'seconds': seconds
+  };
+ }
+ function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+   var t = getTimeRemaining(endtime);
+
+   daysSpan.innerHTML = t.days;
+   hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+   minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+   secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+   if (t.total <= 0) {
+    clearInterval(timeinterval);
+   }
+  }
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+ }
+</script>
+

@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JarchimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_about">
+          <Key>
+            <PropertyRef Name="about_us_id" />
+          </Key>
+          <Property Name="about_us_id" Type="int" Nullable="false" />
+          <Property Name="about_us_img" Type="nvarchar" MaxLength="150" />
+          <Property Name="about_us_exp_one" Type="ntext" />
+          <Property Name="about_us_exp_two" Type="ntext" />
+          <Property Name="about_us_title" Type="nvarchar" MaxLength="150" />
+          <Property Name="about_us_img_alt" Type="nvarchar" MaxLength="50" />
+          <Property Name="about_us_type" Type="int" />
+          <Property Name="about_exp_three" Type="ntext" />
+        </EntityType>
+        <EntityType Name="tbl_ad">
+          <Key>
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="ad_id" Type="bigint" Nullable="false" />
+          <Property Name="ad_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="ad_price" Type="nvarchar" MaxLength="150" />
+          <Property Name="copen_id" Type="bigint" />
+          <Property Name="ad_exp_one" Type="nvarchar(max)" />
+          <Property Name="ad_from_date" Type="datetime" />
+          <Property Name="ad_visit" Type="int" />
+          <Property Name="ad_like" Type="int" />
+          <Property Name="ad_dislike" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="ad_exp_two" Type="nvarchar(max)" />
+          <Property Name="ad_summery" Type="nvarchar(max)" />
+          <Property Name="ad_buy_count" Type="int" />
+          <Property Name="ad_city" Type="int" />
+          <Property Name="ad_cat" Type="int" Nullable="false" />
+          <Property Name="ad_exp_three" Type="nvarchar(max)" />
+          <Property Name="ad_to_date" Type="datetime" />
+          <Property Name="ad_save_per" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="int" Nullable="false" />
+          <Property Name="cat_title" Type="nvarchar" MaxLength="150" />
+          <Property Name="top_id" Type="int" />
+          <Property Name="cat_href" Type="nvarchar" MaxLength="250" />
+          <Property Name="cat_baner_img" Type="nvarchar" MaxLength="250" />
+          <Property Name="cat_icon_img" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_city">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city_title" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tbl_comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" Nullable="false" />
+          <Property Name="ad_id" Type="int" />
+          <Property Name="top_id" Type="int" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="user_email" Type="nvarchar" MaxLength="200" />
+          <Property Name="user_text" Type="ntext" />
+          <Property Name="user_ip_addr" Type="nvarchar" MaxLength="50" />
+          <Property Name="comment_date" Type="datetime2" Precision="7" />
+          <Property Name="c_confirm" Type="bit" />
+          <Property Name="c_read" Type="bit" />
+          <Property Name="c_like" Type="int" />
+          <Property Name="c_dislike" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_contact">
+          <Key>
+            <PropertyRef Name="contact_id" />
+          </Key>
+          <Property Name="contact_id" Type="bigint" Nullable="false" />
+          <Property Name="contact_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="contact_email" Type="nvarchar" MaxLength="255" />
+          <Property Name="contact_phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="contact_text" Type="ntext" />
+          <Property Name="contact_is_read" Type="bit" />
+          <Property Name="contact_date" Type="datetime2" Precision="7" />
+          <Property Name="contact_subject" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tbl_copen">
+          <Key>
+            <PropertyRef Name="copen_id" />
+          </Key>
+          <Property Name="copen_id" Type="bigint" Nullable="false" />
+          <Property Name="ad_id" Type="bigint" />
+          <Property Name="from_date" Type="datetime2" Precision="7" />
+          <Property Name="to_date" Type="datetime2" Precision="7" />
+          <Property Name="copen_per" Type="float" />
+        </EntityType>
+        <EntityType Name="tbl_img_ad">
+          <Key>
+            <PropertyRef Name="img_id" />
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="img_id" Type="bigint" Nullable="false" />
+          <Property Name="ad_id" Type="bigint" Nullable="false" />
+          <Property Name="ad_img" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ad_img_title" Type="nvarchar" MaxLength="100" />
+          <Property Name="ad_img_alt" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_newsletter">
+          <Key>
+            <PropertyRef Name="newsletter_id" />
+          </Key>
+          <Property Name="newsletter_id" Type="bigint" Nullable="false" />
+          <Property Name="newsletter_email" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tbl_order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="ad_id" Type="int" />
+          <Property Name="order_count" Type="int" />
+          <Property Name="order_date" Type="datetime2" Precision="7" />
+          <Property Name="order_status" Type="int" />
+          <Property Name="trans_id" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_rating">
+          <Key>
+            <PropertyRef Name="rat_id" />
+          </Key>
+          <Property Name="rat_id" Type="float" Nullable="false" />
+          <Property Name="ad_id" Type="bigint" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="star_count" Type="decimal" Precision="1" Scale="1" />
+        </EntityType>
+        <EntityType Name="tbl_shopping_cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="int" Nullable="false" />
+          <Property Name="cookie_id" Type="float" />
+          <Property Name="ad_id" Type="int" />
+          <Property Name="cart_count" Type="int" />
+          <Property Name="cart_date" Type="date" />
+          <Property Name="cart_payment" Type="bit" />
+          <Property Name="cart_id_get" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_slider">
+          <Key>
+            <PropertyRef Name="slider_id" />
+          </Key>
+          <Property Name="slider_id" Type="int" Nullable="false" />
+          <Property Name="slider_img" Type="nvarchar" MaxLength="1000" />
+          <Property Name="slider_link" Type="nvarchar" MaxLength="50" />
+          <Property Name="slider_sort" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_temp_shopping">
+          <Key>
+            <PropertyRef Name="temp_id" />
+          </Key>
+          <Property Name="temp_id" Type="bigint" Nullable="false" />
+          <Property Name="cart_id_get" Type="int" />
+          <Property Name="ad_id" Type="int" />
+          <Property Name="temp_count" Type="int" />
+          <Property Name="temp_date" Type="datetime2" Precision="7" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="trans_id" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_email" Type="nvarchar" MaxLength="200" />
+          <Property Name="user_pass" Type="nvarchar" MaxLength="100" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_birthday" Type="datetime2" Precision="7" />
+          <Property Name="user_mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="user_phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="user_province" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_city" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_postal_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="user_addr" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_pic" Type="nvarchar" MaxLength="255" />
+          <Property Name="user_access" Type="int" />
+          <Property Name="user_reg_date" Type="datetime2" Precision="7" />
+          <Property Name="user_is_sex" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tbl_ad_tbl_ad">
+          <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+          <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ad">
+              <PropertyRef Name="ad_id" />
+            </Principal>
+            <Dependent Role="tbl_ad1">
+              <PropertyRef Name="ad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ad_tbl_ad1">
+          <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+          <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ad">
+              <PropertyRef Name="ad_id" />
+            </Principal>
+            <Dependent Role="tbl_ad1">
+              <PropertyRef Name="ad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JarchimModelStoreContainer">
+          <EntitySet Name="tbl_about" EntityType="Self.tbl_about" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ad" EntityType="Self.tbl_ad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_city" EntityType="Self.tbl_city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_comment" EntityType="Self.tbl_comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_contact" EntityType="Self.tbl_contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_copen" EntityType="Self.tbl_copen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_img_ad" EntityType="Self.tbl_img_ad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_newsletter" EntityType="Self.tbl_newsletter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_order" EntityType="Self.tbl_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_rating" EntityType="Self.tbl_rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_shopping_cart" EntityType="Self.tbl_shopping_cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_slider" EntityType="Self.tbl_slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_temp_shopping" EntityType="Self.tbl_temp_shopping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_ad_tbl_ad" Association="Self.FK_tbl_ad_tbl_ad">
+            <End Role="tbl_ad" EntitySet="tbl_ad" />
+            <End Role="tbl_ad1" EntitySet="tbl_ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ad_tbl_ad1" Association="Self.FK_tbl_ad_tbl_ad1">
+            <End Role="tbl_ad" EntitySet="tbl_ad" />
+            <End Role="tbl_ad1" EntitySet="tbl_ad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JarchimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_about">
+          <Key>
+            <PropertyRef Name="about_us_id" />
+          </Key>
+          <Property Name="about_us_id" Type="Int32" Nullable="false" />
+          <Property Name="about_us_img" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="about_us_exp_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="about_us_exp_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="about_us_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="about_us_img_alt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="about_us_type" Type="Int32" />
+          <Property Name="about_exp_three" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ad">
+          <Key>
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="ad_id" Type="Int64" Nullable="false" />
+          <Property Name="ad_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ad_price" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="copen_id" Type="Int64" />
+          <Property Name="ad_exp_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ad_from_date" Type="DateTime" Precision="3" />
+          <Property Name="ad_visit" Type="Int32" />
+          <Property Name="ad_like" Type="Int32" />
+          <Property Name="ad_dislike" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ad_exp_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ad_summery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ad_buy_count" Type="Int32" />
+          <Property Name="ad_city" Type="Int32" />
+          <Property Name="ad_cat" Type="Int32" Nullable="false" />
+          <Property Name="ad_exp_three" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ad_to_date" Type="DateTime" Precision="3" />
+          <Property Name="ad_save_per" Type="Int32" />
+          <NavigationProperty Name="tbl_ad1" Relationship="Self.FK_tbl_ad_tbl_ad" FromRole="tbl_ad" ToRole="tbl_ad1" />
+          <NavigationProperty Name="tbl_ad2" Relationship="Self.FK_tbl_ad_tbl_ad" FromRole="tbl_ad1" ToRole="tbl_ad" />
+          <NavigationProperty Name="tbl_ad11" Relationship="Self.FK_tbl_ad_tbl_ad1" FromRole="tbl_ad" ToRole="tbl_ad1" />
+          <NavigationProperty Name="tbl_ad3" Relationship="Self.FK_tbl_ad_tbl_ad1" FromRole="tbl_ad1" ToRole="tbl_ad" />
+        </EntityType>
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="Int32" Nullable="false" />
+          <Property Name="cat_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="top_id" Type="Int32" />
+          <Property Name="cat_href" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cat_baner_img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cat_icon_img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_city">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" />
+          <Property Name="ad_id" Type="Int32" />
+          <Property Name="top_id" Type="Int32" />
+          <Property Name="user_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="user_email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="user_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_ip_addr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comment_date" Type="DateTime" Precision="7" />
+          <Property Name="c_confirm" Type="Boolean" />
+          <Property Name="c_read" Type="Boolean" />
+          <Property Name="c_like" Type="Int32" />
+          <Property Name="c_dislike" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_contact">
+          <Key>
+            <PropertyRef Name="contact_id" />
+          </Key>
+          <Property Name="contact_id" Type="Int64" Nullable="false" />
+          <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="contact_email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="contact_phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="contact_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contact_is_read" Type="Boolean" />
+          <Property Name="contact_date" Type="DateTime" Precision="7" />
+          <Property Name="contact_subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_copen">
+          <Key>
+            <PropertyRef Name="copen_id" />
+          </Key>
+          <Property Name="copen_id" Type="Int64" Nullable="false" />
+          <Property Name="ad_id" Type="Int64" />
+          <Property Name="from_date" Type="DateTime" Precision="7" />
+          <Property Name="to_date" Type="DateTime" Precision="7" />
+          <Property Name="copen_per" Type="Double" />
+        </EntityType>
+        <EntityType Name="tbl_img_ad">
+          <Key>
+            <PropertyRef Name="img_id" />
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="img_id" Type="Int64" Nullable="false" />
+          <Property Name="ad_id" Type="Int64" Nullable="false" />
+          <Property Name="ad_img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ad_img_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ad_img_alt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_newsletter">
+          <Key>
+            <PropertyRef Name="newsletter_id" />
+          </Key>
+          <Property Name="newsletter_id" Type="Int64" Nullable="false" />
+          <Property Name="newsletter_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ad_id" Type="Int32" />
+          <Property Name="order_count" Type="Int32" />
+          <Property Name="order_date" Type="DateTime" Precision="7" />
+          <Property Name="order_status" Type="Int32" />
+          <Property Name="trans_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_rating">
+          <Key>
+            <PropertyRef Name="rat_id" />
+          </Key>
+          <Property Name="rat_id" Type="Double" Nullable="false" />
+          <Property Name="ad_id" Type="Int64" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="star_count" Type="Decimal" Precision="1" Scale="1" />
+        </EntityType>
+        <EntityType Name="tbl_shopping_cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" />
+          <Property Name="cookie_id" Type="Double" />
+          <Property Name="ad_id" Type="Int32" />
+          <Property Name="cart_count" Type="Int32" />
+          <Property Name="cart_date" Type="DateTime" Precision="0" />
+          <Property Name="cart_payment" Type="Boolean" />
+          <Property Name="cart_id_get" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_slider">
+          <Key>
+            <PropertyRef Name="slider_id" />
+          </Key>
+          <Property Name="slider_id" Type="Int32" Nullable="false" />
+          <Property Name="slider_img" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="slider_link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="slider_sort" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_temp_shopping">
+          <Key>
+            <PropertyRef Name="temp_id" />
+          </Key>
+          <Property Name="temp_id" Type="Int64" Nullable="false" />
+          <Property Name="cart_id_get" Type="Int32" />
+          <Property Name="ad_id" Type="Int32" />
+          <Property Name="temp_count" Type="Int32" />
+          <Property Name="temp_date" Type="DateTime" Precision="7" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="trans_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="user_pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_birthday" Type="DateTime" Precision="7" />
+          <Property Name="user_mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="user_province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="user_postal_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="user_addr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="user_access" Type="Int32" />
+          <Property Name="user_reg_date" Type="DateTime" Precision="7" />
+          <Property Name="user_is_sex" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_tbl_ad_tbl_ad">
+          <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+          <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ad">
+              <PropertyRef Name="ad_id" />
+            </Principal>
+            <Dependent Role="tbl_ad1">
+              <PropertyRef Name="ad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ad_tbl_ad1">
+          <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+          <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ad">
+              <PropertyRef Name="ad_id" />
+            </Principal>
+            <Dependent Role="tbl_ad1">
+              <PropertyRef Name="ad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JarchimDb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_about" EntityType="Self.tbl_about" />
+          <EntitySet Name="tbl_ad" EntityType="Self.tbl_ad" />
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+          <EntitySet Name="tbl_city" EntityType="Self.tbl_city" />
+          <EntitySet Name="tbl_comment" EntityType="Self.tbl_comment" />
+          <EntitySet Name="tbl_contact" EntityType="Self.tbl_contact" />
+          <EntitySet Name="tbl_copen" EntityType="Self.tbl_copen" />
+          <EntitySet Name="tbl_img_ad" EntityType="Self.tbl_img_ad" />
+          <EntitySet Name="tbl_newsletter" EntityType="Self.tbl_newsletter" />
+          <EntitySet Name="tbl_order" EntityType="Self.tbl_order" />
+          <EntitySet Name="tbl_rating" EntityType="Self.tbl_rating" />
+          <EntitySet Name="tbl_shopping_cart" EntityType="Self.tbl_shopping_cart" />
+          <EntitySet Name="tbl_slider" EntityType="Self.tbl_slider" />
+          <EntitySet Name="tbl_temp_shopping" EntityType="Self.tbl_temp_shopping" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+          <AssociationSet Name="FK_tbl_ad_tbl_ad" Association="Self.FK_tbl_ad_tbl_ad">
+            <End Role="tbl_ad" EntitySet="tbl_ad" />
+            <End Role="tbl_ad1" EntitySet="tbl_ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ad_tbl_ad1" Association="Self.FK_tbl_ad_tbl_ad1">
+            <End Role="tbl_ad" EntitySet="tbl_ad" />
+            <End Role="tbl_ad1" EntitySet="tbl_ad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JarchimModelStoreContainer" CdmEntityContainer="JarchimDb">
+          <EntitySetMapping Name="tbl_about">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_about">
+              <MappingFragment StoreEntitySet="tbl_about">
+                <ScalarProperty Name="about_us_id" ColumnName="about_us_id" />
+                <ScalarProperty Name="about_us_img" ColumnName="about_us_img" />
+                <ScalarProperty Name="about_us_exp_one" ColumnName="about_us_exp_one" />
+                <ScalarProperty Name="about_us_exp_two" ColumnName="about_us_exp_two" />
+                <ScalarProperty Name="about_us_title" ColumnName="about_us_title" />
+                <ScalarProperty Name="about_us_img_alt" ColumnName="about_us_img_alt" />
+                <ScalarProperty Name="about_us_type" ColumnName="about_us_type" />
+                <ScalarProperty Name="about_exp_three" ColumnName="about_exp_three" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ad">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_ad">
+              <MappingFragment StoreEntitySet="tbl_ad">
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="ad_name" ColumnName="ad_name" />
+                <ScalarProperty Name="ad_price" ColumnName="ad_price" />
+                <ScalarProperty Name="copen_id" ColumnName="copen_id" />
+                <ScalarProperty Name="ad_exp_one" ColumnName="ad_exp_one" />
+                <ScalarProperty Name="ad_from_date" ColumnName="ad_from_date" />
+                <ScalarProperty Name="ad_visit" ColumnName="ad_visit" />
+                <ScalarProperty Name="ad_like" ColumnName="ad_like" />
+                <ScalarProperty Name="ad_dislike" ColumnName="ad_dislike" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ad_exp_two" ColumnName="ad_exp_two" />
+                <ScalarProperty Name="ad_summery" ColumnName="ad_summery" />
+                <ScalarProperty Name="ad_buy_count" ColumnName="ad_buy_count" />
+                <ScalarProperty Name="ad_city" ColumnName="ad_city" />
+                <ScalarProperty Name="ad_cat" ColumnName="ad_cat" />
+                <ScalarProperty Name="ad_exp_three" ColumnName="ad_exp_three" />
+                <ScalarProperty Name="ad_to_date" ColumnName="ad_to_date" />
+                <ScalarProperty Name="ad_save_per" ColumnName="ad_save_per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_category">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_category">
+              <MappingFragment StoreEntitySet="tbl_category">
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="cat_title" ColumnName="cat_title" />
+                <ScalarProperty Name="top_id" ColumnName="top_id" />
+                <ScalarProperty Name="cat_href" ColumnName="cat_href" />
+                <ScalarProperty Name="cat_baner_img" ColumnName="cat_baner_img" />
+                <ScalarProperty Name="cat_icon_img" ColumnName="cat_icon_img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_city">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_city">
+              <MappingFragment StoreEntitySet="tbl_city">
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="city_title" ColumnName="city_title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_comment">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_comment">
+              <MappingFragment StoreEntitySet="tbl_comment">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="top_id" ColumnName="top_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_text" ColumnName="user_text" />
+                <ScalarProperty Name="user_ip_addr" ColumnName="user_ip_addr" />
+                <ScalarProperty Name="comment_date" ColumnName="comment_date" />
+                <ScalarProperty Name="c_confirm" ColumnName="c_confirm" />
+                <ScalarProperty Name="c_read" ColumnName="c_read" />
+                <ScalarProperty Name="c_like" ColumnName="c_like" />
+                <ScalarProperty Name="c_dislike" ColumnName="c_dislike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_contact">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_contact">
+              <MappingFragment StoreEntitySet="tbl_contact">
+                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+                <ScalarProperty Name="contact_text" ColumnName="contact_text" />
+                <ScalarProperty Name="contact_is_read" ColumnName="contact_is_read" />
+                <ScalarProperty Name="contact_date" ColumnName="contact_date" />
+                <ScalarProperty Name="contact_subject" ColumnName="contact_subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_copen">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_copen">
+              <MappingFragment StoreEntitySet="tbl_copen">
+                <ScalarProperty Name="copen_id" ColumnName="copen_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="from_date" ColumnName="from_date" />
+                <ScalarProperty Name="to_date" ColumnName="to_date" />
+                <ScalarProperty Name="copen_per" ColumnName="copen_per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_img_ad">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_img_ad">
+              <MappingFragment StoreEntitySet="tbl_img_ad">
+                <ScalarProperty Name="img_id" ColumnName="img_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="ad_img" ColumnName="ad_img" />
+                <ScalarProperty Name="ad_img_title" ColumnName="ad_img_title" />
+                <ScalarProperty Name="ad_img_alt" ColumnName="ad_img_alt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_newsletter">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_newsletter">
+              <MappingFragment StoreEntitySet="tbl_newsletter">
+                <ScalarProperty Name="newsletter_id" ColumnName="newsletter_id" />
+                <ScalarProperty Name="newsletter_email" ColumnName="newsletter_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_order">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_order">
+              <MappingFragment StoreEntitySet="tbl_order">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="order_count" ColumnName="order_count" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_rating">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_rating">
+              <MappingFragment StoreEntitySet="tbl_rating">
+                <ScalarProperty Name="rat_id" ColumnName="rat_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="star_count" ColumnName="star_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_shopping_cart">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_shopping_cart">
+              <MappingFragment StoreEntitySet="tbl_shopping_cart">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="cookie_id" ColumnName="cookie_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="cart_count" ColumnName="cart_count" />
+                <ScalarProperty Name="cart_date" ColumnName="cart_date" />
+                <ScalarProperty Name="cart_payment" ColumnName="cart_payment" />
+                <ScalarProperty Name="cart_id_get" ColumnName="cart_id_get" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_slider">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_slider">
+              <MappingFragment StoreEntitySet="tbl_slider">
+                <ScalarProperty Name="slider_id" ColumnName="slider_id" />
+                <ScalarProperty Name="slider_img" ColumnName="slider_img" />
+                <ScalarProperty Name="slider_link" ColumnName="slider_link" />
+                <ScalarProperty Name="slider_sort" ColumnName="slider_sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_temp_shopping">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_temp_shopping">
+              <MappingFragment StoreEntitySet="tbl_temp_shopping">
+                <ScalarProperty Name="temp_id" ColumnName="temp_id" />
+                <ScalarProperty Name="cart_id_get" ColumnName="cart_id_get" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="temp_count" ColumnName="temp_count" />
+                <ScalarProperty Name="temp_date" ColumnName="temp_date" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_users">
+            <EntityTypeMapping TypeName="JarchimModel.tbl_users">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="user_birthday" ColumnName="user_birthday" />
+                <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_province" ColumnName="user_province" />
+                <ScalarProperty Name="user_city" ColumnName="user_city" />
+                <ScalarProperty Name="user_postal_code" ColumnName="user_postal_code" />
+                <ScalarProperty Name="user_addr" ColumnName="user_addr" />
+                <ScalarProperty Name="user_pic" ColumnName="user_pic" />
+                <ScalarProperty Name="user_access" ColumnName="user_access" />
+                <ScalarProperty Name="user_reg_date" ColumnName="user_reg_date" />
+                <ScalarProperty Name="user_is_sex" ColumnName="user_is_sex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

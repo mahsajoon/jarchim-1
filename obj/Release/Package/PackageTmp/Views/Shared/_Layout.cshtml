@@ -1,0 +1,224 @@
+﻿@{
+ Jarchim.da.daCategory daCategory = new Jarchim.da.daCategory();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>ClassyAds &mdash; Colorlib Website Template</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ @*<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800" rel="stylesheet">*@
+ <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+ <link rel="stylesheet" href="~/css/bootstrap.min.css">
+ <link rel="stylesheet" href="~/css/magnific-popup.css">
+ <link rel="stylesheet" href="~/css/jquery-ui.css">
+ <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+ <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+ <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+ <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+ <link rel="stylesheet" href="~/css/aos.css">
+ <link rel="stylesheet" href="~/css/rangeslider.css">
+ <link href="~/style1.css" rel="stylesheet" />
+ <link rel="stylesheet" href="~/css/style.css">
+
+</head>
+<body>
+ <!-- /Preloader -->
+ <div class="site-wrap">
+  <div id="preloader">
+   <div class="loader"></div>
+  </div>
+  <!-- /Preloader -->
+  <!-- Header Area Start -->
+  <header class="header-area">
+   <!-- Search Form -->
+   <div class="search-form d-flex align-items-center">
+    <div class="container">
+     <form action="index.html" method="get">
+      <input type="search" name="search-form-input" id="searchFormInput" placeholder="Type your keyword ...">
+      <button type="submit"><i class="icon_search"></i></button>
+     </form>
+    </div>
+   </div>
+
+   <!-- Top Header Area Start -->
+   <div class="top-header-area">
+    <div class="container">
+     <div class="row">
+      <div class="col-9 text-right">
+       <div class="top-header-content">
+        <a href="#"><i class="icon_phone"></i> <span>(011) 333-17-043</span></a>
+        <a href="#"><i class="icon_mail"></i> <span>Jarchim@gmail.com</span></a>
+       </div>
+      </div>
+      <div class="col-3">
+       <a class="nav-brand" href="index.html">
+        @*<img src="/img/core-img/logo.png" alt="">*@
+        <span style="color:white;font-size:30px;float: right;">جارچیم</span>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Top Header Area End -->
+   <!-- Main Header Start -->
+   <div class="main-header-area">
+    <div class="classy-nav-container breakpoint-off">
+     <div class="container" style="max-width: 1290px;">
+      <!-- Classy Menu -->
+      <nav class="classy-navbar justify-content-between" id="robertoNav">
+       <!-- Menu -->
+       <div class="classy-menu">
+        <!-- Menu Close Button -->
+        <div class="classycloseIcon">
+         <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+        </div>
+        <!-- Nav Start -->
+        <div class="classynav">
+         <ul id="nav">
+          @foreach (var vCategory in daCategory.fGetCatList(0))
+          {
+           <li>
+            @Html.RouteLink(@vCategory.cat_title, "PostPaging2", new { action = "ads", controller = "category", page = (@vCategory.cat_id), title = @vCategory.cat_title }, new { })
+           </li>
+          }
+         </ul>
+         <!-- Search -->
+        </div>
+        <!-- Nav End -->
+       </div>
+       <!-- Navbar Toggler -->
+       <div class="classy-navbar-toggler">
+        <span class="navbarToggler"><span></span><span></span><span></span></span>
+       </div>
+       <!-- Logo -->
+
+
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!-- Header Area End -->
+
+
+  @RenderBody()
+
+  <!-- Footer Area Start -->
+  <footer class="footer-area section-padding-80-0 text-right" dir="rtl">
+   <!-- Main Footer Area -->
+   <div class="main-footer-area">
+    <div class="container">
+     <div class="row align-items-baseline justify-content-between">
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-6 col-lg-3">
+       <div class="single-footer-widget mb-80">
+        <!-- Footer Logo -->
+        <a href="#" class="footer-logo"><img src="~/img/core-img/logo2.png" alt=""></a>
+
+        <h4>+9112594978</h4>
+        <span>Jarchim@gmail.com</span>
+        <span>حس خوب هیجان، با تخفیف های روزانه جارچیم</span>
+       </div>
+      </div>
+
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-6 col-lg-3">
+       <div class="single-footer-widget mb-80">
+        <!-- Widget Title -->
+        <h5 class="widget-title">ارتباط با ما</h5>
+
+        <!-- Footer Nav -->
+        <ul class="footer-nav">
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>راهنمای خرید</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>راهنمای پرداخت</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>  جارچیم چگونه کار می‌کند</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i> سوالات متداول</a></li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-4 col-lg-2">
+       <div class="single-footer-widget mb-80">
+        <!-- Widget Title -->
+        <h5 class="widget-title">ارتباط با ما</h5>
+
+        <!-- Footer Nav -->
+        <ul class="footer-nav">
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>تماس با ما</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>همکاری با ما</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>دریافت نمایندگی</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i> جارچیم برای کسب و کار شما</a></li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-8 col-lg-4">
+       <div class="single-footer-widget mb-80">
+        <!-- Widget Title -->
+        <h5 class="widget-title">اشتراک در خبرنامه</h5>
+        <span>برای دریافت آخرین آگهی ها در خبرنامه جارچیم عضو شوید.</span>
+
+        <!-- Newsletter Form -->
+        <form action="index.html" class="nl-form">
+         <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+         <input type="email" class="form-control" placeholder="ایمیل را وارد کنید...">
+        </form>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- Copywrite Area -->
+   <div class="container">
+    <div class="copywrite-content">
+     <div class="row align-items-center">
+      <div class="col-12 col-md-9">
+       <!-- Copywrite Text -->
+       <div class="copywrite-text">
+        <p>
+         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+         Copyright &copy;
+         <script>document.write(new Date().getFullYear());</script>   کلیه حقوق این وب سایت متعلق به شرکت کسب و کار جارچیم است. <i class="fa fa-heart-o" aria-hidden="true"></i>
+         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+       </div>
+      </div>
+      <div class="col-12 col-md-3">
+       <!-- Social Info -->
+       <div class="social-info">
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <!-- Footer Area End -->
+ </div>
+ <script src="~/js/jquery-3.3.1.min.js"></script>
+ <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+ <script src="~/js/jquery-ui.js"></script>
+ <script src="~/js/popper.min.js"></script>
+ <script src="~/js/bootstrap.min.js"></script>
+ <script src="~/js/owl.carousel.min.js"></script>
+ <script src="~/js/jquery.stellar.min.js"></script>
+ <script src="~/js/jquery.countdown.min.js"></script>
+ <script src="~/js/jquery.magnific-popup.min.js"></script>
+ <script src="~/js/bootstrap-datepicker.min.js"></script>
+ <script src="~/js/aos.js"></script>
+ <script src="~/js/rangeslider.min.js"></script>
+ <script src="~/js/main.js"></script>
+ <script src="~/js/roberto.bundle.js"></script>
+ <!-- Active -->
+ <script src="~/js/default-assets/active.js"></script>
+ @RenderSection("crudScript", required: false)
+ @RenderSection("check", required: false)
+</body>
+</html>

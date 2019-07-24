@@ -1,0 +1,151 @@
+﻿@model Jarchim.Models.mAbout
+@{
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+}
+<section class="content-header">
+ <h1>
+  ویرایش 
+ </h1>
+</section>
+<!-- Content Header (Page header) -->
+@using (Html.BeginForm("AboutUs", "mAboutUs", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    if (ViewBag.error != null)
+    {
+  <div class="col-md-8 form-group" style="margin-top:30px;margin-right:3px;">
+   <div class="alert alert-dismissable alert-danger">
+    @ViewBag.error
+   </div>
+  </div>
+ }
+        <!-- Main content -->
+ <section class="content">
+  <div class="row">
+   <!-- right column -->
+   <div class="col-md-12">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+     <!-- form start -->
+     <form class="form-horizontal">
+      <div class="box-body">
+       @Html.TextBoxFor(model => model.about_us_id, new { @type = "hidden" })
+       <div class="form-group">
+        <input type="hidden" name="about_us_img" id="about_us_img" value="@Model.about_us_img" />
+        <label class="col-sm-2 control-label" for="img_file">تصویر   :</label>
+        <div class="col-sm-2">
+         <img src="~/images/about/@Model.about_us_img" width="70" height="70" />
+        </div>
+        <div class="col-sm-6">
+         <input type="file" name="img_file" id="" value="@Model.about_us_img" />
+        </div>
+       </div>
+       <div class="form-group">
+        <label class="col-sm-2 control-label" for="about_us_title">عنوان : </label>
+        <div class="col-sm-4">
+         @Html.TextBoxFor(model => model.about_us_title, new { @placeholder = "عنوان", @class = "form-control force" })
+        </div>
+       </div>
+       <div class="form-group">
+        <label class="col-sm-2 control-label" for="about_us_img_alt">متن جایگزین تصویر : </label>
+        <div class="col-sm-4">
+         @Html.TextBoxFor(model => model.about_us_img_alt, new { @placeholder = "متن جایگزین تصویر ", @class = "form-control force" })
+        </div>
+       </div>
+       <div class="form-group">
+        <div class="box-body pad">
+       <label class="col-sm-2 control-label" for="about_us_exp_one"> شرح1 :</label>
+          <div class="col-sm-10">
+          <textarea id="about_us_exp_one" name="about_us_exp_one" rows="10" cols="70">@Model.about_us_exp_one</textarea>
+         </div>
+        </div>
+       </div>
+       <div class="form-group">
+        <div class="box-body pad">
+                <label class="col-sm-2 control-label" for="about_us_exp_two"> شرح2 :</label>
+         <div class="col-sm-10">
+          <textarea id="about_us_exp_two" name="about_us_exp_two" rows="10" cols="70">@Model.about_us_exp_two</textarea>
+         </div>
+        </div>
+       </div>
+          <div class="form-group">
+              <div class="box-body pad">
+                   <label class="col-sm-2 control-label" for="about_exp_three"> شرح3 :</label>
+                  <div class="col-sm-10">
+                      <textarea id="about_exp_three" name="about_exp_three" rows="10" cols="70">@Model.about_exp_three</textarea>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+       <button type="submit" class="btn btn-info pull-right sub_validation">ویرایش</button>
+      </div>
+      <!-- /.box-footer -->
+     </form>
+    </div>
+    <!-- /.box -->
+   </div>
+   <!--/.col (right) -->
+  </div>
+  <!-- /.row -->
+ </section>
+        <!-- /.content -->
+           }
+
+<script src="~/panel/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/panel/bower_components/ckeditor/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<!--<script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>-->
+<!-- TinyMCE Editor -->
+<script src="~/panel/bower_components/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#mytextarea',
+        plugins : 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 300,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+  $(function () {
+      CKEDITOR.replace('about_us_exp_one')
+    $('.textarea').wysihtml5()
+  })
+  $(function () {
+      CKEDITOR.replace('about_us_exp_two')
+       $('.textarea').wysihtml5()
+  })
+  $(function () {
+      CKEDITOR.replace('about_exp_three')
+   $('.textarea').wysihtml5()
+  })
+  $(function () {
+      CKEDITOR.replace('about_us_exp_one_en')
+      $('.textarea').wysihtml5()
+  })
+  $(function () {
+      CKEDITOR.replace('about_us_exp_two_en')
+      $('.textarea').wysihtml5()
+  })
+  $(function () {
+      CKEDITOR.replace('about_exp_en_three')
+      $('.textarea').wysihtml5()
+  })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

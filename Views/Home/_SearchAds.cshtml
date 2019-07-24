@@ -1,0 +1,167 @@
+﻿@model Jarchim.Models.mHome
+@{
+    ViewBag.Title = "";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();
+    decimal vCount;
+    decimal vPage;
+}
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/images/ads/@Model.aSubGroup[0].cat_baner_img);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container" style="margin:auto">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8 text-center">
+                        @if (Model.aAd!=null && Model.aAd.Count > 0)
+                        {
+                            <h1>@Model.aAd[0].cat_name</h1>
+                        }
+                        @*<p class="mb-0">Choose product you want</p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="site-section bg-light" dir="rtl">
+ <div class="container">
+  @{
+   if (Model.aSubGroup != null)
+   {
+    <div class="overlap-category mb-5">
+     <div class="row align-items-stretch no-gutters">
+         <div class="">
+             <a href="#" class="popular-category h-100">
+                 <span class="icon">
+                     <img src="~/images/icon/cart.svg" style="width: 60px;" />
+                 </span>
+                 <span class="caption mb-2 d-block">همه</span>
+                 <span class="number">3,921</span>
+             </a>
+         </div>
+      @foreach (var item in Model.aSubGroup)
+      {
+       <div class="">
+        <a href="#" class="popular-category h-100">
+         <span class="icon">
+          <img src="~/images/icon/@item.cat_icon_img" style="width: 60px;" />
+         </span>
+         <span class="caption mb-2 d-block">@item.cat_title</span>
+         <span class="number">3,921</span>
+        </a>
+       </div>
+      }
+     </div>
+    </div>
+   }
+  }
+
+
+ </div>
+</div>
+
+
+@if (Model.aAd.Count > 0)
+{
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-12 text-right border-primary" dir="rtl">
+                    @*<h2 class="font-weight-light text-primary">جارچیم امروز</h2>*@
+                </div>
+            </div>
+            <div class="row mt-5">
+                @foreach (var vToday in Model.aAd)
+                {
+                    <div class="col-lg-6">
+                        <div class="d-block d-md-flex listing">
+                            @foreach (var vImg in vToday.aAdImg)
+                            {
+                                if (vToday.ad_id == vImg.ad_id)
+                                {  <a href="#" class="img d-block" style="background-image: url('../images/ads/@vImg.ad_img')"></a>
+                                    break;
+                                }
+                            }
+                            <div class="lh-content">
+                                <span class="category">@vToday.cat_name</span>
+                                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                                <h3>
+                                    @Html.RouteLink(vToday.ad_name, "PostPaging1", new { action = "ads", controller = "Page", page = (vToday.ad_id), title = vToday.ad_name }, new { })
+                                </h3>
+                                <address>@vToday.ad_summery</address>
+                                <p class="mb-0">
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-secondary"></span>
+                                    <span class="review">(@vToday.ad_visit بازدید)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@*<div class="site-section bg-white">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center border-primary">
+                <h2 class="font-weight-light text-primary">Testimonials</h2>
+            </div>
+        </div>
+        <div class="slide-one-item home-slider owl-carousel">
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>John Smith</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>Christine Aguilar</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_4.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>Robert Spears</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_5.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>Bruce Rogers</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+

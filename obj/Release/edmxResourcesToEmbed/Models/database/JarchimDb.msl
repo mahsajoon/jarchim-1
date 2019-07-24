@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JarchimModelStoreContainer" CdmEntityContainer="JarchimDb">
+    <EntitySetMapping Name="tbl_about">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_about">
+        <MappingFragment StoreEntitySet="tbl_about">
+          <ScalarProperty Name="about_us_id" ColumnName="about_us_id" />
+          <ScalarProperty Name="about_us_img" ColumnName="about_us_img" />
+          <ScalarProperty Name="about_us_exp_one" ColumnName="about_us_exp_one" />
+          <ScalarProperty Name="about_us_exp_two" ColumnName="about_us_exp_two" />
+          <ScalarProperty Name="about_us_title" ColumnName="about_us_title" />
+          <ScalarProperty Name="about_us_img_alt" ColumnName="about_us_img_alt" />
+          <ScalarProperty Name="about_us_type" ColumnName="about_us_type" />
+          <ScalarProperty Name="about_exp_three" ColumnName="about_exp_three" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ad">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_ad">
+        <MappingFragment StoreEntitySet="tbl_ad">
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="ad_name" ColumnName="ad_name" />
+          <ScalarProperty Name="ad_price" ColumnName="ad_price" />
+          <ScalarProperty Name="copen_id" ColumnName="copen_id" />
+          <ScalarProperty Name="ad_exp_one" ColumnName="ad_exp_one" />
+          <ScalarProperty Name="ad_from_date" ColumnName="ad_from_date" />
+          <ScalarProperty Name="ad_visit" ColumnName="ad_visit" />
+          <ScalarProperty Name="ad_like" ColumnName="ad_like" />
+          <ScalarProperty Name="ad_dislike" ColumnName="ad_dislike" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="ad_exp_two" ColumnName="ad_exp_two" />
+          <ScalarProperty Name="ad_summery" ColumnName="ad_summery" />
+          <ScalarProperty Name="ad_buy_count" ColumnName="ad_buy_count" />
+          <ScalarProperty Name="ad_city" ColumnName="ad_city" />
+          <ScalarProperty Name="ad_cat" ColumnName="ad_cat" />
+          <ScalarProperty Name="ad_exp_three" ColumnName="ad_exp_three" />
+          <ScalarProperty Name="ad_to_date" ColumnName="ad_to_date" />
+          <ScalarProperty Name="ad_to_time" ColumnName="ad_to_time" />
+          <ScalarProperty Name="ad_from_time" ColumnName="ad_from_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_category">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_category">
+        <MappingFragment StoreEntitySet="tbl_category">
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="cat_title" ColumnName="cat_title" />
+          <ScalarProperty Name="top_id" ColumnName="top_id" />
+          <ScalarProperty Name="cat_href" ColumnName="cat_href" />
+          <ScalarProperty Name="cat_baner_img" ColumnName="cat_baner_img" />
+          <ScalarProperty Name="cat_icon_img" ColumnName="cat_icon_img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_city">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_city">
+        <MappingFragment StoreEntitySet="tbl_city">
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="city_title" ColumnName="city_title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_comment">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_comment">
+        <MappingFragment StoreEntitySet="tbl_comment">
+          <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="top_id" ColumnName="top_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_text" ColumnName="user_text" />
+          <ScalarProperty Name="user_ip_addr" ColumnName="user_ip_addr" />
+          <ScalarProperty Name="comment_date" ColumnName="comment_date" />
+          <ScalarProperty Name="c_confirm" ColumnName="c_confirm" />
+          <ScalarProperty Name="c_read" ColumnName="c_read" />
+          <ScalarProperty Name="c_like" ColumnName="c_like" />
+          <ScalarProperty Name="c_dislike" ColumnName="c_dislike" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_contact">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_contact">
+        <MappingFragment StoreEntitySet="tbl_contact">
+          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+          <ScalarProperty Name="contact_text" ColumnName="contact_text" />
+          <ScalarProperty Name="contact_is_read" ColumnName="contact_is_read" />
+          <ScalarProperty Name="contact_date" ColumnName="contact_date" />
+          <ScalarProperty Name="contact_subject" ColumnName="contact_subject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_copen">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_copen">
+        <MappingFragment StoreEntitySet="tbl_copen">
+          <ScalarProperty Name="copen_id" ColumnName="copen_id" />
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="from_date" ColumnName="from_date" />
+          <ScalarProperty Name="to_date" ColumnName="to_date" />
+          <ScalarProperty Name="copen_per" ColumnName="copen_per" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_img_ad">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_img_ad">
+        <MappingFragment StoreEntitySet="tbl_img_ad">
+          <ScalarProperty Name="img_id" ColumnName="img_id" />
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="ad_img" ColumnName="ad_img" />
+          <ScalarProperty Name="ad_img_title" ColumnName="ad_img_title" />
+          <ScalarProperty Name="ad_img_alt" ColumnName="ad_img_alt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_order">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_order">
+        <MappingFragment StoreEntitySet="tbl_order">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="order_count" ColumnName="order_count" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_shopping_cart">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_shopping_cart">
+        <MappingFragment StoreEntitySet="tbl_shopping_cart">
+          <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+          <ScalarProperty Name="cookie_id" ColumnName="cookie_id" />
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="cart_count" ColumnName="cart_count" />
+          <ScalarProperty Name="cart_date" ColumnName="cart_date" />
+          <ScalarProperty Name="cart_payment" ColumnName="cart_payment" />
+          <ScalarProperty Name="cart_id_get" ColumnName="cart_id_get" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_slider">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_slider">
+        <MappingFragment StoreEntitySet="tbl_slider">
+          <ScalarProperty Name="slider_id" ColumnName="slider_id" />
+          <ScalarProperty Name="slider_img" ColumnName="slider_img" />
+          <ScalarProperty Name="slider_link" ColumnName="slider_link" />
+          <ScalarProperty Name="slider_sort" ColumnName="slider_sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_temp_shopping">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_temp_shopping">
+        <MappingFragment StoreEntitySet="tbl_temp_shopping">
+          <ScalarProperty Name="temp_id" ColumnName="temp_id" />
+          <ScalarProperty Name="cart_id_get" ColumnName="cart_id_get" />
+          <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+          <ScalarProperty Name="temp_count" ColumnName="temp_count" />
+          <ScalarProperty Name="temp_date" ColumnName="temp_date" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_users">
+      <EntityTypeMapping TypeName="JarchimModel.tbl_users">
+        <MappingFragment StoreEntitySet="tbl_users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="user_birthday" ColumnName="user_birthday" />
+          <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_province" ColumnName="user_province" />
+          <ScalarProperty Name="user_city" ColumnName="user_city" />
+          <ScalarProperty Name="user_postal_code" ColumnName="user_postal_code" />
+          <ScalarProperty Name="user_addr" ColumnName="user_addr" />
+          <ScalarProperty Name="user_pic" ColumnName="user_pic" />
+          <ScalarProperty Name="user_access" ColumnName="user_access" />
+          <ScalarProperty Name="user_reg_date" ColumnName="user_reg_date" />
+          <ScalarProperty Name="user_is_sex" ColumnName="user_is_sex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

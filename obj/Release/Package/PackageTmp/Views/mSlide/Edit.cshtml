@@ -1,0 +1,69 @@
+﻿@model Jarchim.Models.mSlider
+@{
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+}
+<section class="content-header">
+ <h1>
+  ویرایش اسلاید
+ </h1>
+</section>
+<!-- Content Header (Page header) -->
+@using (Html.BeginForm("Edit", "mSlide", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    if (ViewBag.error != null)
+    {
+  <div class="col-md-8 form-group" style="margin-top:30px;margin-right:3px;">
+   <div class="alert alert-dismissable alert-danger">
+    @ViewBag.error
+   </div>
+  </div>
+ }
+ <!-- Main content -->
+ <section class="content">
+  <div class="row">
+   <!-- right column -->
+   <div class="col-md-8">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+     <!-- form start -->
+     <form class="form-horizontal">
+      <div class="box-body">
+          @Html.TextBoxFor(model => model.slider_id, new { @type = "hidden" })
+          <div class="form-group">
+              <input type="hidden" name="slider_img" id="slider_img" value="@Model.slider_img" />
+              <label class="col-sm-3 control-label" for="img_file">تصویر(1279*1920):</label>
+              <div class="col-sm-3">
+                  <img src="~/images/slider/@Model.slider_img" width="70" height="70" />
+              </div>
+              <div class="col-sm-6">
+                  <input type="file" name="img_file" id="" value="@Model.slider_img" />
+              </div>
+          </div>
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="slider_href"> نشانی / مقصد :</label>
+        <div class="col-sm-9">
+         @Html.TextBoxFor(model => model.slider_link, new { @placeholder = "نشانی / مقصد", @class = "form-control force" })
+        </div>
+       </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+       <button type="submit" class="btn btn-info pull-right sub_validation">ویرایش</button>
+      </div>
+      <!-- /.box-footer -->
+     </form>
+    </div>
+    <!-- /.box -->
+   </div>
+   <!--/.col (right) -->
+  </div>
+  <!-- /.row -->
+ </section>
+        <!-- /.content -->
+}
+
+
+
+
+

@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+ <link href="~/Content/jquery.rateyo.min.css" rel="stylesheet" />
+
+ <div id="rateYo"></div>
+
+ <script src="~/js/app/jquery.min.js"></script>
+
+ <script src="~/js/app/jquery.rateyo.js"></script>
+
+ <script>
+
+     /* Javascript */
+
+     //$(function () {
+
+     // $("#rateYo").rateYo({
+     //  rating: 4,
+     //  spacing: "10px"
+     // });
+     //});
+     // Getter
+
+     $(function () {
+
+      $("#rateYo").rateYo({
+         rating: 4,
+         spacing: "10px",
+       onSet: function (rating, rateYoInstance) {
+
+        alert("Rating is set to: " + rating);
+       }
+      });
+     });
+     // Getter
+     var onSet = $("#rateYo").rateYo("option", "onSet"); //returns the function
+
+     // Setter
+     $("#rateYo").rateYo("option", "onSet", function () {
+
+      console.log("This is a new function");
+     });
+
+     //var readOnly = $("#rateYo").rateYo("option", "spacing"); //returns 10px
+
+     //// Setter
+     //$("#rateYo").rateYo("option", "spacing", "5px"); //returns a jQuery Element
+ </script>
+

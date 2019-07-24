@@ -1,0 +1,61 @@
+﻿@model Jarchim.Models.mSlider
+@{
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+}
+<section class="content-header">
+ <h1>
+  اسلاید جدید
+ </h1>
+</section>
+<!-- Content Header (Page header) -->
+@using (Html.BeginForm("Create", "mSlide", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" } ))
+{
+    if (ViewBag.error != null)
+    {
+  <div class="col-md-8 form-group" style="margin-top:30px;margin-right:3px;">
+   <div class="alert alert-dismissable alert-danger">
+    @ViewBag.error
+   </div>
+  </div>
+ }
+ <!-- Main content -->
+ <section class="content">
+  <div class="row">
+   <!-- right column -->
+   <div class="col-md-8">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+     <!-- form start -->
+     <form class="form-horizontal">
+      <div class="box-body">
+       <input type="hidden" id="slider_id" value="@Model.slider_id" />
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="img_file">تصویر(1279*1920):</label>
+        <div class="col-sm-9">
+         <input type="file" name="img_file" id="" value="" />
+        </div>
+       </div>
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="slider_href"> نشانی / مقصد :</label>
+        <div class="col-sm-9">
+         @Html.TextBoxFor(model => model.slider_link, new { @placeholder = "نشانی / مقصد", @class = "form-control force" })
+        </div>
+       </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+       <button type="submit" class="btn btn-info pull-right sub_validation">ثبت</button>
+      </div>
+      <!-- /.box-footer -->
+     </form>
+    </div>
+    <!-- /.box -->
+   </div>
+   <!--/.col (right) -->
+  </div>
+  <!-- /.row -->
+ </section>
+        <!-- /.content -->
+}
+

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Jarchim.Models.mComment>
+@{
+    Jarchim.Models.database.JarchimDb Jarchim = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();
+}
+@{
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header" style="margin-left:15px;">
+    <div class="row my-rows text-left">
+        <button class="btn btn-danger delete" type="submit">
+            <span class="fa fa-trash"></span>
+            حذف
+        </button>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box -->
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>نام </th>
+                                <th>پیام الکترونیک </th>
+                                <th>آدرس آی پی </th>
+                                <th>تاریخ </th>
+                                <th>متن پیام </th>
+                                <th>حذف </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="@item.comment_id">
+                                    <td>@Html.DisplayFor(modelItem => item.user_name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.user_email)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.user_ip_addr)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.comment_date)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.user_text)</td>
+                                    <td><input value="@item.comment_id" name="radioSelect" type="radio"></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+@section crudScript{
+    <script>
+                $('.delete').click(function (event) {
+                    url = get_current_url();
+                    event.preventDefault();
+                    var r = confirm("آیا از حذف رکورد اطمینان دارید؟");
+                    if (r == true) {
+                        var pIds = $('input[name="radioSelect"]:radio:checked').val();
+                        $.ajax({
+                            url: url + '/RemoveComment',
+                            dataType: "json",
+                            data: { "pId": pIds },
+                            type: "POST",
+                            async: "true",
+                            cache: false,
+                            beforeSend: function () {
+                            },
+                            success: function (data) {
+                                $("#" + pIds).remove()
+                            }
+                        });
+                    }
+                });
+                function get_current_url() {
+                    project = window.location.pathname.split('/');
+                    url = window.location.protocol + '//' + window.location.host + '/' + project[1];
+                    return url;
+                }
+    </script>
+}
+
+
+
+

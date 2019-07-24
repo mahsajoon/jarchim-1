@@ -1,0 +1,320 @@
+﻿@model Jarchim.Models.mHome
+@{
+    ViewBag.Title = "";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();
+    decimal vCount;
+    decimal vPage;
+}
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/images/ads/@Model.aSubGroup[0].cat_baner_img);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8 text-center">
+                        @if (Model.aAd!=null && Model.aAd.Count > 0)
+                        {
+                            <h1>@Model.aAd[0].cat_name</h1>
+                        }
+                        @*<p class="mb-0">Choose product you want</p>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="site-section bg-light" dir="rtl">
+ <div class="container">
+  @{
+   if (Model.aSubGroup != null)
+   {
+    <div class="overlap-category mb-5">
+     <div class="row align-items-stretch no-gutters">
+         <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+             <a href="#" class="popular-category h-100">
+                 <span class="icon">
+                     <img src="~/images/icon/cart.svg" style="width: 60px;" />
+                 </span>
+                 <span class="caption mb-2 d-block">همه</span>
+                 <span class="number">3,921</span>
+             </a>
+         </div>
+      @foreach (var item in Model.aSubGroup)
+      {
+       <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+        <a href="#" class="popular-category h-100">
+         <span class="icon">
+          <img src="~/images/icon/@item.cat_icon_img" style="width: 60px;" />
+         </span>
+         <span class="caption mb-2 d-block">@item.cat_title</span>
+         <span class="number">3,921</span>
+        </a>
+       </div>
+      }
+     </div>
+    </div>
+   }
+  }
+
+
+ </div>
+</div>
+
+<div class="site-section" dir="rtl">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+ @foreach (var item in Model.aAd)
+{
+                    <div class="col-lg-4">
+                        <div class="d-block d-md-flex listing vertical">
+                              @foreach (var vImg in Model.aAdImg)
+  {
+      if (item.ad_id == vImg.img_id)
+      {
+            <a href="#" class="img d-block" style="background-image: url('/images/ads/@vImg.ad_img')"></a>
+                                      break;
+                                  }
+                              }
+                         
+                            <div class="lh-content">
+                                <span class="category">@item.cat_name</span>
+                                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                                <h3 class="text-right">
+                                    @Html.RouteLink(@item.ad_name, "PostPaging1", new { action = "ads", controller = "Page",cat= (@item.ad_cat), page = (@item.ad_id), title = @item.ad_name }, new { })
+                                </h3>
+                                <address>@item.ad_summery</address>
+                                <p class="mb-0">
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-secondary"></span>
+                                    <span class="review">(@item.ad_visit بازدید)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+}
+                </div>
+                <div class="col-12 mt-5 text-center">
+                    <div class="custom-pagination">
+                        @{
+                            if (ViewBag.IsSearch == "1")
+                            {
+                                vCount = (from a in Model.aAd
+                                          where a.ad_cat == Model.vmAd.ad_cat
+                                          select a).Count();
+                                vPage = vCount / 18;
+
+                            }
+                            else
+                            {
+                                vCount = (from a in JarchimDb.tbl_ad
+                                          where a.ad_cat == Model.vmAd.ad_cat
+                                          select a).Count();
+                                vPage = vCount / 18;
+                            }
+                        }
+                        @if (c.IsDecimal(vPage))
+                        {
+                            vPage++;
+                        }
+                        @for (int i = 1; i <= vPage; i++)
+                        {
+                             <a href="~/Category/fGetPage?pPageNum=@i&pAction=Ads">@i</a>
+                         }
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-3 ml-auto">
+                <div class="mb-5">
+                    <h3 class="h5 text-black mb-3">Filters</h3>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" placeholder="What are you looking for?" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <div class="select-wrap">
+                                <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                                <select class="form-control" name="" id="">
+                                    <option value="">All Categories</option>
+                                    <option value="" selected="">Real Estate</option>
+                                    <option value="">Books &amp;  Magazines</option>
+                                    <option value="">Furniture</option>
+                                    <option value="">Electronics</option>
+                                    <option value="">Cars &amp; Vehicles</option>
+                                    <option value="">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                             select-wrap, .wrap-icon 
+                            <div class="wrap-icon">
+                                <span class="icon icon-room"></span>
+                                <input type="text" placeholder="Location" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mb-5">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <p>Radius around selected destination</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="range" min="0" max="100" value="20" data-rangeslider>
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-5">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <p>Category 'Real Estate' is selected</p>
+                            <p>More filters</p>
+                        </div>
+                        <div class="form-group">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label for="option1">
+                                        <input type="checkbox" id="option1">
+                                        Residential
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="option2">
+                                        <input type="checkbox" id="option2">
+                                        Commercial
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="option3">
+                                        <input type="checkbox" id="option3">
+                                        Industrial
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="option4">
+                                        <input type="checkbox" id="option4">
+                                        Land
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-5">
+                    <h3 class="h6 mb-3">More Info</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatem placeat facilis, reprehenderit eius officiis.</p>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+@if (Model.aTodayOffer.Count > 0)
+{
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-12 text-right border-primary" dir="rtl">
+                    <h2 class="font-weight-light text-primary">جارچیم امروز</h2>
+                </div>
+            </div>
+            <div class="row mt-5">
+                @foreach (var vToday in Model.aTodayOffer)
+                {
+                    <div class="col-lg-6">
+                        <div class="d-block d-md-flex listing">
+                            @foreach (var vImg in vToday.aAdImg)
+                            {
+                                if (vToday.ad_id == vImg.ad_id)
+                                {  <a href="#" class="img d-block" style="background-image: url('../images/ads/@vImg.ad_img')"></a>
+                                    break;
+                                }
+                            }
+                            <div class="lh-content">
+                                <span class="category">@vToday.cat_name</span>
+                                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                                <h3>
+                                    @Html.RouteLink(vToday.ad_name, "PostPaging1", new { action = "ads", controller = "Page", cat = (vToday.ad_cat), page = (vToday.ad_id), title = vToday.ad_name }, new { })
+                                </h3>
+                                <address>@vToday.ad_summery</address>
+                                <p class="mb-0">
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-warning"></span>
+                                    <span class="icon-star text-secondary"></span>
+                                    <span class="review">(@vToday.ad_visit بازدید)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@*<div class="site-section bg-white">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center border-primary">
+                <h2 class="font-weight-light text-primary">Testimonials</h2>
+            </div>
+        </div>
+        <div class="slide-one-item home-slider owl-carousel">
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>John Smith</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>Christine Aguilar</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_4.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>Robert Spears</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div>
+                <div class="testimonial">
+                    <figure class="mb-4">
+                        <img src="images/person_5.jpg" alt="Image" class="img-fluid mb-3">
+                        <p>Bruce Rogers</p>
+                    </figure>
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+

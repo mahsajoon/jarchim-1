@@ -1,0 +1,253 @@
+﻿@model Jarchim.Models.mAd
+@{
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+}
+<section class="content-header">
+ <h1>
+ویرایش آگهی
+  </h1>
+</section>
+<!-- Content Header (Page header) -->
+@using (Html.BeginForm("Edit", "mAds", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+ if (ViewBag.error != null)
+ {
+  <div class="col-md-8 form-group" style="margin-top:30px;margin-right:3px;">
+   <div class="alert alert-dismissable alert-danger">
+    @ViewBag.error
+   </div>
+  </div>
+ }
+ <!-- Main content -->
+ <section class="content">
+  <div class="row">
+   <!-- right column -->
+   <div class="col-md-12">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+     <!-- form start -->
+     <form class="form-horizontal">
+      <div class="box-body">
+          @Html.TextBoxFor(model => model.ad_id, new { @type = "hidden" })
+
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_name">عنوان : </label>
+              <div class="col-sm-6">
+                  @Html.TextBoxFor(model => model.ad_name, new { @placeholder = "عنوان", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_price">قیمت: </label>
+              <div class="col-sm-2">
+                  @Html.TextBoxFor(model => model.ad_price, new { @placeholder = "قیمت", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_buy_count"> تعداد فروش :</label>
+              <div class="col-sm-1">
+                  @Html.TextBoxFor(model => model.ad_buy_count, new { @placeholder = "تعداد فروش", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_from_date_str"> از تاریخ :</label>
+              <div class="col-sm-2">
+                  @Html.TextBoxFor(model => model.ad_from_date_str, new { @placeholder = "از تاریخ", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_to_date_str"> تا تاریخ :</label>
+              <div class="col-sm-2">
+                  @Html.TextBoxFor(model => model.ad_to_date_str, new { @placeholder = "تا تاریخ", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_from_time"> از ساعت :</label>
+              <div class="col-sm-2">
+                  @Html.TextBoxFor(model => model.ad_from_time, new { @placeholder = "مثال: 12:12", @class = "hasTimepicker form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_to_time"> تا ساعت :</label>
+              <div class="col-sm-2">
+                  @Html.TextBoxFor(model => model.ad_to_time, new { @placeholder = "مثال: 12:12", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_date"> دسته بندی :</label>
+              <div class="col-sm-3">
+                  @{
+                      var qCat = from n in JarchimDb.tbl_category
+                                 select n;
+                  }
+                  <select class="form-control select2" id="ad_cat" name="ad_cat">
+                      <option  value="0">همه</option>
+                      @foreach (var vCat in qCat)
+                      {
+                          <option @if (Model.ad_cat == vCat.cat_id) { @:selected
+                                  } value="@vCat.cat_id">
+                              @vCat.cat_title
+                          </option>
+                      }
+
+                  </select>
+
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_date"> شهر :</label>
+              <div class="col-sm-3">
+                  @{
+                      var qCity = from n in JarchimDb.tbl_city
+                                  select n;
+                  }
+                  <select class="form-control select2" id="ad_city" name="ad_city">
+                      <option value="0">همه</option>
+                      @foreach (var vCity in qCity)
+                      {
+                          <option @if (Model.ad_city == vCity.city_id) { @:selected
+                                  } value="@vCity.city_id">
+                              @vCity.city_title
+                          </option>
+                      }
+
+                  </select>
+
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_like"> Like :</label>
+              <div class="col-sm-1">
+                  @Html.TextBoxFor(model => model.ad_like, new { @placeholder = "Like", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_dislike"> Dislike :</label>
+              <div class="col-sm-1">
+                  @Html.TextBoxFor(model => model.ad_dislike, new { @placeholder = "Dis", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="ad_visit">Visit :</label>
+              <div class="col-sm-1">
+                  @Html.TextBoxFor(model => model.ad_visit, new { @placeholder = "Visit", @class = "form-control force" })
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="box-body pad">
+                  <label class="col-sm-2 control-label" for="ad_summery">خلاصه :</label>
+                  <div class="col-sm-10">
+                      <textarea id="ad_summery" name="ad_summery" rows="10" cols="70">@Model.ad_summery</textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="box-body pad">
+                  <label class="col-sm-2 control-label" for="ad_exp_one"> شرح 1 :</label>
+                  <div class="col-sm-10">
+                      <textarea id="ad_exp_one" name="ad_exp_one" rows="10" cols="70">@Model.ad_exp_one</textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="box-body pad">
+                  <label class="col-sm-2 control-label" for="ad_exp_two">2 شرح  :</label>
+                  <div class="col-sm-10">
+                      <textarea id="ad_exp_two" name="ad_exp_two" rows="10" cols="70">@Model.ad_exp_two</textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="box-body pad">
+                  <label class="col-sm-2 control-label" for="ad_exp_three">3 شرح  :</label>
+                  <div class="col-sm-10">
+                      <textarea id="ad_exp_three" name="ad_exp_three" rows="10" cols="70">@Model.ad_exp_three</textarea>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+       <button type="submit" class="btn btn-info pull-right sub_validation">ویرایش</button>
+      </div>
+      <!-- /.box-footer -->
+     </form>
+    </div>
+    <!-- /.box -->
+   </div>
+   <!--/.col (right) -->
+  </div>
+  <!-- /.row -->
+ </section>
+        <!-- /.content -->
+}
+
+@section crudScript{
+  <script src="~/panel/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/panel/bower_components/ckeditor/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<!--<script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>-->
+<!-- TinyMCE Editor -->
+<script src="~/panel/bower_components/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#mytextarea',
+        plugins : 'advlist autolink link lists preview table code pagebreak',
+        menubar: false,
+        language: 'fa',
+        height: 300,
+        relative_urls: false,
+        toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+    });
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+      CKEDITOR.replace('ad_summery')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+  $(function () {
+      // Replace the <textarea id="editor1"> with a CKEditor
+      // instance, using default configuration.
+      CKEDITOR.replace('ad_exp_one')
+      //bootstrap WYSIHTML5 - text editor
+      $('.textarea').wysihtml5()
+  })
+  $(function () {
+      // Replace the <textarea id="editor1"> with a CKEditor
+      // instance, using default configuration.
+      CKEDITOR.replace('ad_exp_two')
+      //bootstrap WYSIHTML5 - text editor
+      $('.textarea').wysihtml5()
+  })
+  $(function () {
+      // Replace the <textarea id="editor1"> with a CKEditor
+      // instance, using default configuration.
+      CKEDITOR.replace('ad_exp_three')
+      //bootstrap WYSIHTML5 - text editor
+      $('.textarea').wysihtml5()
+  })
+</script>
+<script>
+    kamaDatepicker('ad_from_date_str', { buttonsColor: "red" });
+    kamaDatepicker('ad_to_date_str', { buttonsColor: "red" });
+
+		var customOptions = {
+			placeholder: "روز / ماه / سال"
+			, twodigit: false
+			, closeAfterSelect: false
+			, nextButtonIcon: "fa fa-arrow-circle-right"
+			, previousButtonIcon: "fa fa-arrow-circle-left"
+			, buttonsColor: "blue"
+			, forceFarsiDigits: true
+			, markToday: true
+			, markHolidays: true
+			, highlightSelectedDay: true
+			, sync: true
+			, gotoToday: true
+		}
+		// for testing sync functionallity
+		//$("#ad_from_date_str").val("1311/10/01");
+</script>  
+    }

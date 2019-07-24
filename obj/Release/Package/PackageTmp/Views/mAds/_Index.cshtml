@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Jarchim.Models.mAd>
+@{
+    ViewBag.Title = "فهرست آگهی ها";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();}
+<!-- Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box -->
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>عنوان</th>
+                                <th>قیمت</th>
+                                <th>تعداد فروش </th>
+                                <th>تاریخ </th>
+                                <th>Like </th>
+                                <th>Dislike </th>
+                                <th>Visit </th>
+                                @*<th>خلاصه </th>
+                                    <th>شرح 1 </th>
+                                    <th>شرح 2 </th>*@
+                                <th>ویرایش</th>
+                                <th>حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="@item.ad_id">
+                                    <td>@Html.DisplayFor(modelItem => item.ad_name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ad_price)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ad_buy_count)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ad_from_date)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ad_like)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ad_dislike)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ad_visit)</td>
+                                    @*<td>@Html.DisplayFor(modelItem => item.ad_summery)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ad_exp_one)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ad_exp_two)</td>*@
+                                    <td><a href="~/mAds/Edit?pId=@item.ad_id" class="btn btn-info icon-preview"><i data-toggle="tooltip" data-placement="right" data-original-title="ویرایش" class="fa fa-pencil"> </i></a></td>
+                                    <td><input value="@item.ad_id" name="radioSelect" type="radio"></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @{
+                        decimal vCount = (from a in JarchimDb.tbl_ad
+                                          select a).Count();
+                        decimal vPage = vCount / 15;
+                    }
+                    <div class="col-12" dir="rtl">
+                        <div class="pagination-wrap text-center">
+                            <ul>
+                                @if (c.IsDecimal(vPage))
+                                {
+                                    vPage++;
+                                }
+                                @for (int i = 1; i <= vPage; i++)
+                                {
+                                    <li><a href="~/mAds/fGetPage?pPageNum=@i&pAction=Index">@i</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

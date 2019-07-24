@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JarchimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_about">
+    <Key>
+      <PropertyRef Name="about_us_id" />
+    </Key>
+    <Property Name="about_us_id" Type="Int32" Nullable="false" />
+    <Property Name="about_us_img" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="about_us_exp_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="about_us_exp_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="about_us_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="about_us_img_alt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="about_us_type" Type="Int32" />
+    <Property Name="about_exp_three" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_ad">
+    <Key>
+      <PropertyRef Name="ad_id" />
+    </Key>
+    <Property Name="ad_id" Type="Int64" Nullable="false" />
+    <Property Name="ad_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ad_price" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="copen_id" Type="Int64" />
+    <Property Name="ad_exp_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ad_from_date" Type="Int32" />
+    <Property Name="ad_visit" Type="Int32" />
+    <Property Name="ad_like" Type="Int32" />
+    <Property Name="ad_dislike" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="ad_exp_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ad_summery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ad_buy_count" Type="Int32" />
+    <Property Name="ad_city" Type="Int32" />
+    <Property Name="ad_cat" Type="Int32" Nullable="false" />
+    <Property Name="ad_exp_three" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ad_to_date" Type="Int32" />
+    <Property Name="ad_to_time" Type="Int32" />
+    <Property Name="ad_from_time" Type="Int32" />
+    <NavigationProperty Name="tbl_ad1" Relationship="Self.FK_tbl_ad_tbl_ad" FromRole="tbl_ad" ToRole="tbl_ad1" />
+    <NavigationProperty Name="tbl_ad2" Relationship="Self.FK_tbl_ad_tbl_ad" FromRole="tbl_ad1" ToRole="tbl_ad" />
+    <NavigationProperty Name="tbl_ad11" Relationship="Self.FK_tbl_ad_tbl_ad1" FromRole="tbl_ad" ToRole="tbl_ad1" />
+    <NavigationProperty Name="tbl_ad3" Relationship="Self.FK_tbl_ad_tbl_ad1" FromRole="tbl_ad1" ToRole="tbl_ad" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="Int32" Nullable="false" />
+    <Property Name="cat_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="top_id" Type="Int32" />
+    <Property Name="cat_href" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="cat_baner_img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="cat_icon_img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_city">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city_title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="comment_id" Type="Int32" Nullable="false" />
+    <Property Name="ad_id" Type="Int32" />
+    <Property Name="top_id" Type="Int32" />
+    <Property Name="user_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="user_email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="user_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_ip_addr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comment_date" Type="DateTime" Precision="7" />
+    <Property Name="c_confirm" Type="Boolean" />
+    <Property Name="c_read" Type="Boolean" />
+    <Property Name="c_like" Type="Int32" />
+    <Property Name="c_dislike" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_contact">
+    <Key>
+      <PropertyRef Name="contact_id" />
+    </Key>
+    <Property Name="contact_id" Type="Int64" Nullable="false" />
+    <Property Name="contact_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="contact_email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="contact_phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="contact_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contact_is_read" Type="Boolean" />
+    <Property Name="contact_date" Type="DateTime" Precision="7" />
+    <Property Name="contact_subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_copen">
+    <Key>
+      <PropertyRef Name="copen_id" />
+    </Key>
+    <Property Name="copen_id" Type="Int64" Nullable="false" />
+    <Property Name="ad_id" Type="Int64" />
+    <Property Name="from_date" Type="DateTime" Precision="7" />
+    <Property Name="to_date" Type="DateTime" Precision="7" />
+    <Property Name="copen_per" Type="Double" />
+  </EntityType>
+  <EntityType Name="tbl_img_ad">
+    <Key>
+      <PropertyRef Name="img_id" />
+      <PropertyRef Name="ad_id" />
+    </Key>
+    <Property Name="img_id" Type="Int64" Nullable="false" />
+    <Property Name="ad_id" Type="Int64" Nullable="false" />
+    <Property Name="ad_img" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ad_img_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ad_img_alt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="ad_id" Type="Int32" />
+    <Property Name="order_count" Type="Int32" />
+    <Property Name="order_date" Type="DateTime" Precision="7" />
+    <Property Name="order_status" Type="Int32" />
+    <Property Name="trans_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_shopping_cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="Int32" Nullable="false" />
+    <Property Name="cookie_id" Type="Double" />
+    <Property Name="ad_id" Type="Int32" />
+    <Property Name="cart_count" Type="Int32" />
+    <Property Name="cart_date" Type="DateTime" Precision="0" />
+    <Property Name="cart_payment" Type="Boolean" />
+    <Property Name="cart_id_get" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_slider">
+    <Key>
+      <PropertyRef Name="slider_id" />
+    </Key>
+    <Property Name="slider_id" Type="Int32" Nullable="false" />
+    <Property Name="slider_img" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="slider_link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="slider_sort" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_temp_shopping">
+    <Key>
+      <PropertyRef Name="temp_id" />
+    </Key>
+    <Property Name="temp_id" Type="Int64" Nullable="false" />
+    <Property Name="cart_id_get" Type="Int32" />
+    <Property Name="ad_id" Type="Int32" />
+    <Property Name="temp_count" Type="Int32" />
+    <Property Name="temp_date" Type="DateTime" Precision="7" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="trans_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="user_pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_birthday" Type="DateTime" Precision="7" />
+    <Property Name="user_mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="user_phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="user_province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="user_postal_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="user_addr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="user_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="user_access" Type="Int32" />
+    <Property Name="user_reg_date" Type="DateTime" Precision="7" />
+    <Property Name="user_is_sex" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_tbl_ad_tbl_ad">
+    <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+    <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ad">
+        <PropertyRef Name="ad_id" />
+      </Principal>
+      <Dependent Role="tbl_ad1">
+        <PropertyRef Name="ad_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ad_tbl_ad1">
+    <End Role="tbl_ad" Type="Self.tbl_ad" Multiplicity="1" />
+    <End Role="tbl_ad1" Type="Self.tbl_ad" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ad">
+        <PropertyRef Name="ad_id" />
+      </Principal>
+      <Dependent Role="tbl_ad1">
+        <PropertyRef Name="ad_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JarchimDb" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_about" EntityType="Self.tbl_about" />
+    <EntitySet Name="tbl_ad" EntityType="Self.tbl_ad" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+    <EntitySet Name="tbl_city" EntityType="Self.tbl_city" />
+    <EntitySet Name="tbl_comment" EntityType="Self.tbl_comment" />
+    <EntitySet Name="tbl_contact" EntityType="Self.tbl_contact" />
+    <EntitySet Name="tbl_copen" EntityType="Self.tbl_copen" />
+    <EntitySet Name="tbl_img_ad" EntityType="Self.tbl_img_ad" />
+    <EntitySet Name="tbl_order" EntityType="Self.tbl_order" />
+    <EntitySet Name="tbl_shopping_cart" EntityType="Self.tbl_shopping_cart" />
+    <EntitySet Name="tbl_slider" EntityType="Self.tbl_slider" />
+    <EntitySet Name="tbl_temp_shopping" EntityType="Self.tbl_temp_shopping" />
+    <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+    <AssociationSet Name="FK_tbl_ad_tbl_ad" Association="Self.FK_tbl_ad_tbl_ad">
+      <End Role="tbl_ad" EntitySet="tbl_ad" />
+      <End Role="tbl_ad1" EntitySet="tbl_ad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ad_tbl_ad1" Association="Self.FK_tbl_ad_tbl_ad1">
+      <End Role="tbl_ad" EntitySet="tbl_ad" />
+      <End Role="tbl_ad1" EntitySet="tbl_ad" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

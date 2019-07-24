@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Jarchim.Models.mCategory>
+@{
+    ViewBag.Title = "فهرست مجموعه ها";
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();
+}
+<!-- Content Header (Page header) -->
+<section class="content-header" style="margin-left:15px;">
+    <div class="row my-rows text-left">
+        <button class="btn btn-danger delete" type="submit">
+            <span class="fa fa-trash"></span>
+            حذف
+        </button>
+        @Html.ActionLink("جدید", "Create", "mCategory", "", new { @class = "btn btn-success" })
+    </div>
+</section>
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box -->
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>تصویر بنر</th>
+                                <th>تصویر آیکون</th>
+                                <th> عنوان </th>
+                                <th>والد</th>
+                                <th>نشانی </th>
+                                <th>ویرایش</th>
+                                <th>حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="@item.cat_id">
+                                    <td>
+                                        <img width="70" height="70" src="~/images/category/@item.cat_baner_img" />
+                                    </td>
+                                    <td>
+                                        <img width="70" height="70" src="~/images/category/@item.cat_icon_img" />
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.cat_title)</td>
+                                    <td>
+                                        @{
+                                            foreach (var vCat in JarchimDb.tbl_category)
+                                            {
+                                                if (vCat.top_id == 0)
+                                                {
+                                                    if (item.top_id == vCat.cat_id)
+                                                    {
+                                                        @vCat.cat_title
+
+                                                    }
+
+                                                }
+                                            }
+                                        }
+
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.cat_href)</td>
+                                    <td><a href="~/mCategory/Edit?pId=@item.cat_id " class="btn btn-info icon-preview"><i data-toggle="tooltip" data-placement="right" data-original-title="ویرایش" class="fa fa-pencil"> </i></a></td>
+                                    <td><input value="@item.cat_id" name="radioSelect" type="radio"></td>
+                                </tr>
+                                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+@section crudScript{
+    <script>
+                $('.delete').click(function (event) {
+                    url = get_current_url();
+                    event.preventDefault();
+                    var r = confirm("آیا از حذف رکورد اطمینان دارید؟");
+                    if (r == true) {
+                        var pIds = $('input[name="radioSelect"]:radio:checked').val();
+                        $.ajax({
+                            url: url + '/RemoveCategory',
+                            dataType: "json",
+                            data: { "pId": pIds },
+                            type: "POST",
+                            async: "true",
+                            cache: false,
+                            beforeSend: function () {
+                            },
+                            success: function (data) {
+                                $("#" + pIds).remove()
+                            }
+                        });
+                    }
+                });
+                function get_current_url() {
+                    project = window.location.pathname.split('/');
+                    url = window.location.protocol + '//' + window.location.host + '/' + project[1];
+                    return url;
+                }
+    </script>
+
+
+}
+
+
+

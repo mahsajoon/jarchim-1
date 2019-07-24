@@ -1,0 +1,361 @@
+﻿@model Jarchim.Models.mHome
+@{
+    ViewBag.Title = "";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();
+    int i = 0;
+}
+<style>
+
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+.clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+.clockdiv > div{
+	padding: 10px;
+	border-radius: 3px;
+	background: #00BF96;
+	display: inline-block;
+}
+
+.clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	background: #00816A;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 16px;
+}
+</style>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+ function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+   'total': t,
+   'days': days,
+   'hours': hours,
+   'minutes': minutes,
+   'seconds': seconds
+  };
+ }
+
+ function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+   var t = getTimeRemaining(endtime);
+
+   daysSpan.innerHTML = t.days;
+   hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+   minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+   secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+   if (t.total <= 0) {
+    clearInterval(timeinterval);
+   }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+ }
+
+ //var deadline = new Date(Date.parse(new Date()) + 16 * 24 * 60 * 60 * 1000);
+ //initializeClock('clockdiv', deadline);
+</script>
+<!-- Breadcrumb Area Start -->
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(/images/ads/@Model.aSubGroup[0].cat_baner_img);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+
+
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8 text-center">
+                        <h1>@Model.vmAd.ad_name</h1>
+                        @*<p class="mb-0">Choose product you want</p>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<!-- Rooms Area Start -->
+<div class="roberto-rooms-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8" dir="rtl">
+                <!-- Single Room Details Area -->
+                <div class="single-room-details-area mb-50" style="text-align:right">
+                    <!-- Room Thumbnail Slides -->
+                    <div class="room-thumbnail-slides mb-50">
+                        <div id="room-thumbnail--slide" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach (var vAd in Model.vmAd.aAdImg)
+                                {
+                                    <div class="carousel-item @if (i == 0) {
+                                        @:active
+                                    } ">
+                                        <img src="~/images/ads/@vAd.ad_img" class="d-block w-100" alt="">
+                                    </div>
+                                    i += 1;
+                                }
+                            </div>
+
+                            <ol class="carousel-indicators">
+                                @{
+                                    i = 0;
+                                }
+                                @foreach (var vAd in Model.vmAd.aAdImg)
+                                {
+                                    <li data-target="#room-thumbnail--slide" data-slide-to="0" class="@if (i == 0) {
+                                        @:active
+                                    }">
+                                        <img src="~/images/ads/@vAd.ad_img" class="d-block w-100" alt="">
+                                    </li>
+                                    i += 1;
+                                }
+                            </ol>
+                        </div>
+                    </div>
+                  <div id="@Model.vmAd.ad_id" class="clockdiv" dir="ltr">
+                   <div>
+                    <span class="days"></span>
+                    <div class="smalltext">روز</div>
+                   </div>
+                   <div>
+                    <span class="hours"></span>
+                    <div class="smalltext">ساعت</div>
+                   </div>
+                   <div>
+                    <span class="minutes"></span>
+                    <div class="smalltext">دقیقه</div>
+                   </div>
+                   <div>
+                    <span class="seconds"></span>
+                    <div class="smalltext">ثانیه</div>
+                   </div>
+                  </div>
+                  <script>
+                   var deadline = new Date(Date.parse(new Date()) + @Model.vmAd.timer_string);
+                   initializeClock('@Model.vmAd.ad_id', deadline);
+                  </script>
+                  <p>
+                   @Html.Raw(Model.vmAd.ad_exp_one)
+                  </p>
+
+                  <p>
+                   @Html.Raw(Model.vmAd.ad_exp_two)
+                  </p>
+                 </div>
+
+
+                <!-- Post Author Area -->
+                <div class="post-author-area d-flex align-items-center justify-content-between mb-50">
+                    <!-- Author Social Info -->
+                    <div class="author-social-info d-flex align-items-center">
+                        <p>اشتراک گذاری:</p>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!-- Comments Area -->
+                <div class="comment_area mb-50 clex">
+                    <h2 style="text-align:right">نظرات</h2>
+                    @{ int cmLike = 0;
+                    }
+                    @foreach (var cm in Model.aComment)
+                    {
+                        cmLike++;
+                        string AjaxLike = "AjaxLike" + cmLike;
+                        string AjaxDisLike = "AjaxDisLike" + cmLike;
+                        string Loading = "Loading" + cmLike;
+                        <ol>
+                            <!-- Single Comment Area -->
+                            <li class="single_comment_area">
+                                <!-- Comment Content -->
+                                <div class="comment-content d-flex">
+                                    <!-- Comment Author -->
+                                    <div class="comment-author">
+                                        <img src="~/images/user.png" alt="author">
+                                    </div>
+                                    <!-- Comment Meta -->
+                                    <div class="comment-meta">
+                                        <a href="#" class="post-date">@cm.comment_date</a>
+                                        <h5>@cm.user_name</h5>
+                                        <p>@cm.user_text</p>
+                                        @*@Ajax.ActionLink("Like", "CommLike", new { AdId = cm.ad_id, CmId = cm.comment_id }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "Loading" + cmLike, UpdateTargetId = "AjaxLike" + cmLike }, new {@class = "Like" })*@
+                                        @*<p id="@AjaxLike">@cm.c_like</p>
+                                            <div id="@Loading" style="display:none;">لطفا صبر کنید...</div>*@
+
+                                        @*<a href="#" class="reply">Reply</a>*@
+                                    </div>
+                                </div>
+
+                                @foreach (var cmchild in cm.aComment)
+                                {
+
+                                    <ol class="children">
+                                        <li class="single_comment_area">
+                                            <!-- Comment Content -->
+                                            <div class="comment-content d-flex">
+                                                <!-- Comment Author -->
+                                                <div class="comment-author">
+                                                    <img src="~/images/user.png" alt="author">
+                                                </div>
+                                                <!-- Comment Meta -->
+                                                <div class="comment-meta">
+                                                    <a href="#" class="post-date">@cm.comment_date</a>
+                                                    <h5>@cm.user_name</h5>
+                                                    <p>@cm.user_text</p>
+                                                    @*<a href="#" class="like">Like</a>*@
+                                                    @*@Ajax.ActionLink("Like", "CommLike", new {AdId=cm.ad_id, CmId = cm.comment_id }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "Loading" + cmLike, UpdateTargetId = "AjaxLike" + cmLike }, new { style = "color:Green;", @class="Like" })*@
+                                                    @*<a href="#" class="reply">Reply</a>*@
+
+
+                                                    @*<div id="DivBtnAnswer">
+                                                            @using (Ajax.BeginForm("AnsComm", new { AdId = cm.ad_id, CmId = cm.comment_id }, new AjaxOptions { HttpMethod = "POST", LoadingElementId = "LoadingAns", UpdateTargetId = "DivAns" }))
+                                                            {
+                                                                <div id="LoadingAns" style="display:none;">لطفا صبر کنید...</div>
+                                                                <input type="submit" value="پاسخ" />
+                                                                <div id="DivAns"></div>
+                                                            }
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                }
+                            </li>
+                        </ol>
+                    }
+                </div>
+
+                @* Leave A Reply*@
+                <div class="roberto-contact-form mt-80 mb-100">
+                    <h2 class="text-right">ارسال دیدگاه</h2>
+                    <input type="hidden" value="@Model.vmAd.ad_id" id="ad_id" class="psd-input" />
+                    <div class="cf-msg-cm"></div>
+                    @*Form*@
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" id="user_name" name="user_name" class="form-control mb-30 psd-input" placeholder="نام">
+                            </div>
+                            <div class="col-12">
+                                <input type="email" id="user_email" name="user_email" class="form-control mb-30 psd-input" placeholder="ایمیل">
+                            </div>
+                            @*<div class="col-12">
+                                    <input type="text" name="website" class="form-control mb-30" placeholder="Websites">
+                                </div>*@
+                            <div class="col-12">
+                                <textarea name="user_text" id="user_text" class="form-control mb-30 psd-input" placeholder="متن دیدگاه"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" onclick="SendComment()" class="btn roberto-btn btn-3 mt-15">ارسال </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4" style="text-align:right">
+
+                <!-- Recent Post -->
+                <div class="single-widget-area mb-100">
+                    <h4 class="widget-title mb-30">جارچیم های لحظه آخری</h4>
+
+                    <!-- Single Recent Post -->
+                    @foreach (var vAd in Model.aLastMoment)
+                    {
+                        <div class="single-recent-post d-flex">
+                            <!-- Thumb -->
+                            <div class="post-thumb">
+                                @if (vAd.aAdImg.Count > 0)
+                                {
+                                    <a href="#"><img src="~/images/ads/@vAd.aAdImg[0].ad_img" alt=""></a>
+
+                                }
+                            </div>
+                            <!-- Content -->
+                            <div class="post-content">
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    @*<a href="#" class="post-author">@vAd.ad_from_date</a>*@
+                                    @*<a href="#" class="post-tutorial">@vAd.cat_name</a>*@
+                                </div>
+                                @*<a href="single-blog.html" class="post-title">@vAd.ad_name</a>*@
+                                @Html.RouteLink(@vAd.ad_name, "PostPaging1", new { action = "ads", controller = "Page", page = (@vAd.ad_id), title = @vAd.ad_name }, new { @class = "post-title" })
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Popular Tags -->
+                @*<div class="single-widget-area mb-100 clearfix">
+                        <h4 class="widget-title mb-30">برچسب ها</h4>
+                         Popular Tags
+                        <ul class="popular-tags">
+                            <li><a href="#">Bed,</a></li>
+                            <li><a href="#">Hotel,</a></li>
+                            <li><a href="#">Travel,</a></li>
+                            <li><a href="#">Restaurant,</a></li>
+                            <li><a href="#">Sport,</a></li>
+                            <li><a href="#">Trip,</a></li>
+                            <li><a href="#">Music,</a></li>
+                            <li><a href="#">Holiday,</a></li>
+                            <li><a href="#">Tourist,</a></li>
+                            <li><a href="#">Foody,</a></li>
+                            <li><a href="#">Resorts.</a></li>
+                        </ul>
+                    </div>*@
+
+                <!-- Instagram -->
+                @*<div class="single-widget-area mb-100 clearfix">
+                        <h4 class="widget-title mb-30">Instagram</h4>
+                         Instagram Feeds
+                        <ul class="instagram-feeds">
+                            <li><a href="#"><img src="~/img/bg-img/33.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="~/img/bg-img/34.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="~/img/bg-img/35.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="~/img/bg-img/36.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="~/img/bg-img/37.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="~/img/bg-img/38.jpg" alt=""></a></li>
+                        </ul>
+                    </div>*@
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Rooms Area End -->

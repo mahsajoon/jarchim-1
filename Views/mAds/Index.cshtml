@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Jarchim.Models.mAd>
+@{
+    ViewBag.Title = "فهرست آگهی ها";
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+    Jarchim.da.daCategory c = new Jarchim.da.daCategory();}
+<!-- Content Header (Page header) -->
+<section class="content-header" style="margin-left:15px;">
+    <div class="row my-rows text-left">
+        <button class="btn btn-danger delete" type="submit">
+            <span class="fa fa-trash"></span>
+            حذف
+        </button>
+        @Html.ActionLink("جدید", "Create", "mAds", "", new { @class = "btn btn-success" })
+    </div>
+</section>
+<div class="col col-md-12" style="margin-top:30px;">
+    <div class="col col-md-4 form-group">
+        <label class="col-sm-5 control-label" for="ad_cat"> دسته بندی :</label>
+        <div class="col-sm-7">
+            @{
+                var qCat = from n in JarchimDb.tbl_category
+                           select n;
+            }
+            <select class="form-control select2" id="ad_cat" name="ad_cat">
+                <option value="0">همه</option>
+                @foreach (var vCat in qCat)
+            {
+                    <option value="@vCat.cat_id">
+                        @vCat.cat_title
+                    </option>
+                }
+
+            </select>
+
+        </div>
+    </div>
+    <div class="col col-md-4 form-group">
+    </div>
+    <div class="col col-md-1 form-group">
+        <button class="btn btn-success search_cat" type="submit">
+            جستجو
+        </button>
+    </div>
+</div>
+<div id="search-cat-result">
+    @Html.Partial("_Index")
+</div>
+
+@section crudScript{
+    <script>
+        $('.delete').click(function (event) {
+            url = get_current_url();
+            event.preventDefault();
+            var r = confirm("آیا از حذف رکورد اطمینان دارید؟");
+            if (r == true) {
+                var pIds = $('input[name="radioSelect"]:radio:checked').val();
+                $.ajax({
+                    url: url + '/RemoveAds',
+                    dataType: "json",
+                    data: { "pId": pIds },
+                    type: "POST",
+                    async: "true",
+                    cache: false,
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        $("#" + pIds).remove()
+                    }
+                });
+            }
+        });
+        function get_current_url() {
+            project = window.location.pathname.split('/');
+            url = window.location.protocol + '//' + window.location.host + '/' + project[1];
+            return url;
+        }
+    </script>
+    <script>
+        function fGetUrl() {
+            url = window.location.protocol + '//' + window.location.host + '/'
+            return url;
+        }
+        vUrl = fGetUrl();
+        $("body").on("click", ".search_cat", function () {
+            vAdCat = $("#ad_cat").val()
+             pData = {ad_cat: vAdCat}
+            $.ajax({
+                url: vUrl + "mAds" + "/" + "Index",
+                type: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify(pData),
+                cache: false,
+                async: false,
+                beforeSend: function () {
+                    $('span.psd-loader').css('display', 'block')
+                },
+                success: function (data) {
+                    $('span.psd-loader').css('display', 'none')
+                    vPartial = data
+                },
+                error: function (errormessage) {
+                    alert(errormessage)
+                    $('span.psd-loader').css('display', 'none')
+                }
+            });
+            $("#search-cat-result").html(vPartial)
+        });
+    </script>
+}
+
+
+

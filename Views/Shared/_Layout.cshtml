@@ -1,0 +1,288 @@
+﻿@{
+ Jarchim.da.daCategory daCategory = new Jarchim.da.daCategory();
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+.star {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAABQCAYAAAAZQFV3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABOFJREFUeNrsmEFoHFUYx9/MdHfTJRKzUhBaFiL1YghZCFQUIV6UQJuLWCgr8eKpIoiFSqsHQYrmYj14KHqxKAl6MbA5eCgKRVAMBhpCwIJQCETRQzTsNtnO7s74+17fbGc3M7OzZhUsHfjzdvd97/++973vff99Y/m+rwb5WL0Idz60h2nckTc8Nw2hncLmAnhtIB7i3VGan8VD8Dhebh+U8FOaX8Bh4EB48R8TQlai+QnkgMTxD/AYpFt9EULk0EyBD8Dn4BPT9TZ4CrwD6Wos4V+XrUdpXzQk4tUEkAFXwNUu+1fAWWO7anADLDLJTkCYpf0K3DQe3Ui5oUI6B8ShlyBstZfMMiXoX4MV8GZKQgnJcXA6nKPtGJoE/gZ8Cy6mIJPwnIJsL3ZTIB2h+U6WANZjyE6Aj8Cz3WT7TooJ7HUwneDdc+BaFFnc0SuCzQTCTWOT+iwfN6cjWJ6clo9NzOS5Bcb6IZTZj5pU+syEYNV8XzA2Y6lOCptyhGbDeDFPnJa6TlGZ5rxJ/nxkSRPCACR5EUyHf4sCNjOgENVn/ecVe+CEy8vLWgJmZ2fd1IRra2vxSbe5eYlmu1gsXo6zmZycTKcpkEn6vC61kM+FQYiUeDdvauP5Ay0ZjyIlgKVv9bVkiBwQVJRX2YwWkKLxrhxB+qYSPaxUKrESANHVrh2PlQAzqSbskAA6UkkA5B0SICvRSzb5ddrMWu4jh8umSLwckLVjSKClWJ6SwsrM76fwLpCAM4x1I9OGjhrN8+AkAyYSyGTDnhEHjCPxeYhBagmIIvtXJOBQkgSY5Z01/76umAy4lbpiG5IqzQuG6Alz9LLmf+IP5hh+AfmxnoSQdUgAg5a6JuuQgMiSFi7fJHkR9JQAbGbA/SoBi4uLWgLK5XIqCdBpkyQBZne3sTm4BGxsbLQlgM+DkYBsNjucyWQKaSXATvCuZFnWHIQqlxMVUOeMx/0RMsgBWgIgcyBVgqwwIwH0JUvAwsJChwQwuOQ4jrJtO/CsfQBc11We56lWqyXfOySALNgJdlmuWzNSB/P5vBKyyJnxMjxBs9mc2tvbEye+DN1l7uYhuaZvAXg1LaQyOOkRL3d3d8XLishHOEd1DMfHx7UEYLjCrCop2aXP2Mht4QxjoyWADi0BxGddZm80GjpWYSL5TfpkYnHAOBK/yxhoCZAl1et1PbharWrUajX9m/SJBESRJUlAr6fvW0CvZyyxOIQPN4kbnv1mlwQERGPhMbHli/Q5Yv5lSdDnSYelrlLWIQGRJS1cvjk1RdBTArCZAferBPT7IkjvcuP7t3pKADaxEpB5+r10FXv3x3kKqqUlgM+DkQB76OFhKzdycAnAo5KynTlraFTZQ4/gqH3ursd9EjLIAVoC7KGCAxFWNqSjWgLoS5aAfS+C7EzJcrLKOjSkrNwoFu0ToPz6n8pv3dFQXjPyRdA9CbDsk/ZDx5SQxWiAsg4X7vE361NedQsn/P0SELwIgmzaHiZMtpMcKK+pWlUuVF6j0v0iSMcw/+QFLQF+y13xbv/GpF4CWUt5tV+FTEsAY6MlgA4tASxlnaUo362yLGLlh2Lo1iCjj4nFAeNI/H9sDHbYxesEfcK//XvSoq9Fkf0/JCDqDWfV3I+TJGCLne19CzAvgtoS8OBF0APC6OdvAQYAj2xzC/IfXBsAAAAASUVORK5CYII=');
+            background-position: left -2px;
+            display: block;
+            width: 20px;
+            height: 16px;
+            line-height: 16px;
+            float: left;
+            cursor: pointer;
+            zoom: 1;
+        }
+
+        .fullStar {
+            background-position: left -59px;
+        }
+
+        .stars {
+            overflow: hidden;
+        }
+
+        .tmp_es {
+            background-position: left -21px;
+        }
+
+        .tmp_fs {
+            background-position: left -40px;
+        }
+    </style>
+
+
+ <title>جارچیم</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ @*<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800" rel="stylesheet">*@
+ <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+ <link rel="stylesheet" href="~/css/bootstrap.min.css">
+ <link rel="stylesheet" href="~/css/magnific-popup.css">
+ <link rel="stylesheet" href="~/css/jquery-ui.css">
+ <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+ <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+ <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+ <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+ <link rel="stylesheet" href="~/css/aos.css">
+ <link rel="stylesheet" href="~/css/rangeslider.css">
+ <link href="~/style1.css" rel="stylesheet" />
+ <link rel="stylesheet" href="~/css/style.css">
+ <link href="~/css/BootstrapJalaliDatePicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+ <link href="~/Content/jquery.rateyo.min.css" rel="stylesheet" />
+</head>
+
+<body>
+ <!-- /Preloader -->
+ <div class="site-wrap">
+  <div id="preloader">
+   <div class="loader"></div>
+  </div>
+  <!-- /Preloader -->
+  <!-- Header Area Start -->
+  <header class="header-area">
+   <!-- Search Form -->
+   <div class="search-form d-flex align-items-center">
+    <div class="container">
+     <form action="index.html" method="get">
+      <input type="search" name="search-form-input" id="searchFormInput" placeholder="Type your keyword ...">
+      <button type="submit"><i class="icon_search"></i></button>
+     </form>
+    </div>
+   </div>
+
+   <!-- Top Header Area Start -->
+   <div class="top-header-area">
+    <div class="container" style="max-width:1300px;">
+     <div class="row">
+         <div class="col-8 text-right">
+             <div class="top-header-content" style="margin-top:20px;">
+                 <a href="~/Home/LogIn"><span class="border-right pl-xl-3"></span>ورود</a>
+                 <a href="~/Home/Register" class="">عضویت</a>
+
+                 <a href="#"><i class="icon_phone"></i> <span>(011) 333-17-043</span></a>
+                 <a href="#"><i class="icon_mail"></i> <span>Jarchim@gmail.com</span></a>
+             </div>
+         </div>
+         <div class="col-2">             
+          </div>
+         <div class="col-1" style="margin-top:20px;">
+             <span style="color:white;font-size:30px;float: right;">جارچیم</span>
+         </div>
+      <div class="col-1" style="margin-top:10px;">
+       <a class="nav-brand" href="index.html" >
+        @*<img src="/img/core-img/logo.png" alt="">*@
+           <img   style="width:70px;" src="~/images/Jarchim.png" />
+       </a>
+      </div>
+
+     </div>
+    </div>
+   </div>
+   <!-- Top Header Area End -->
+   <!-- Main Header Start -->
+   <div class="main-header-area">
+    <div class="classy-nav-container breakpoint-off">
+     <div class="container" style="max-width: 1290px;">
+      <!-- Classy Menu -->
+      <nav class="classy-navbar justify-content-between" id="robertoNav">
+       <!-- Menu -->
+       <div class="classy-menu">
+        <!-- Menu Close Button -->
+        <div class="classycloseIcon">
+         <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+        </div>
+        <!-- Nav Start -->
+        <div class="classynav">
+         <ul id="nav">
+          @foreach (var vCategory in daCategory.fGetCatList(0))
+          {
+           <li>
+            @Html.RouteLink(@vCategory.cat_title, "PostPaging2", new { action = "ads", controller = "category", page = (@vCategory.cat_id), title = @vCategory.cat_title }, new { })
+           </li>
+          }
+         </ul>
+         <!-- Search -->
+        </div>
+        <!-- Nav End -->
+       </div>
+       <!-- Navbar Toggler -->
+       <div class="classy-navbar-toggler">
+        <span class="navbarToggler"><span></span><span></span><span></span></span>
+       </div>
+       <!-- Logo -->
+
+
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!-- Header Area End -->
+
+  @RenderBody()
+
+  <!-- Footer Area Start -->
+  <footer class="footer-area section-padding-80-0 text-right" dir="rtl">
+   <!-- Main Footer Area -->
+   <div class="main-footer-area">
+    <div class="container">
+     <div class="row align-items-baseline justify-content-between">
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-6 col-lg-3">
+       <div class="single-footer-widget mb-80">
+        <!-- Footer Logo -->
+        <a href="#" class="footer-logo"><img style="width:70px;" src="~/images/Jarchim.png" /></a>
+           <h5 class="widget-title">جارچیم</h5>
+        <h4> 333-17-043 (011) </h4>
+        <span>Jarchim@gmail.com</span>
+        <span>حس خوب هیجان، با تخفیف های روزانه جارچیم</span>
+       </div>
+      </div>
+
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-6 col-lg-3">
+       <div class="single-footer-widget mb-80">
+        <!-- Widget Title -->
+        <h5 class="widget-title">ارتباط با ما</h5>
+
+        <!-- Footer Nav -->
+        <ul class="footer-nav">
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>راهنمای خرید</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>راهنمای پرداخت</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>  جارچیم چگونه کار می‌کند</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i> سوالات متداول</a></li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- Single Footer Widget Area -->
+      <div class="col-12 col-sm-4 col-lg-2">
+       <div class="single-footer-widget mb-80">
+        <!-- Widget Title -->
+        <h5 class="widget-title">ارتباط با ما</h5>
+
+        <!-- Footer Nav -->
+        <ul class="footer-nav">
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>تماس با ما</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>همکاری با ما</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>دریافت نمایندگی</a></li>
+         <li><a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i> جارچیم برای کسب و کار شما</a></li>
+        </ul>
+       </div>
+      </div>
+
+      <!-- Single Footer Widget Area -->
+         <div class="col-12 col-sm-8 col-lg-4">
+             <div class="single-footer-widget mb-80">
+                 <!-- Widget Title -->
+                 <h5 class="widget-title">اشتراک در خبرنامه</h5>
+                 <span>برای دریافت آخرین آگهی ها در خبرنامه جارچیم عضو شوید.</span>
+
+                 <!-- Newsletter Form -->
+                 <form action="index.html" class="nl-form">
+                     <button type="button" onclick="fNewsLetter()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                     <input type="email" name="newsletter_email" id="newsletter_email" value="" class="form-control psd-input" placeholder="ایمیل را وارد کنید...">
+                     <div class="cf-msg"></div>
+                 </form>
+             </div>
+         </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- Copywrite Area -->
+   <div class="container">
+    <div class="copywrite-content">
+     <div class="row align-items-center">
+      <div class="col-12 col-md-9">
+       <!-- Copywrite Text -->
+       <div class="copywrite-text">
+        <p>
+         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+         Copyright &copy;
+         <script>document.write(new Date().getFullYear());</script>   کلیه حقوق این وب سایت متعلق به شرکت کسب و کار جارچیم است. <i class="fa fa-heart-o" aria-hidden="true"></i>
+         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+       </div>
+      </div>
+      <div class="col-12 col-md-3">
+       <!-- Social Info -->
+       <div class="social-info">
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <!-- Footer Area End -->
+ </div>
+ <script src="~/js/jquery-3.3.1.min.js"></script>
+ <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+ <script src="~/js/jquery-ui.js"></script>
+ <script src="~/js/popper.min.js"></script>
+ <script src="~/js/bootstrap.min.js"></script>
+ <script src="~/js/owl.carousel.min.js"></script>
+ <script src="~/js/jquery.stellar.min.js"></script>
+ <script src="~/js/jquery.countdown.min.js"></script>
+ <script src="~/js/jquery.magnific-popup.min.js"></script>
+ <script src="~/js/bootstrap-datepicker.min.js"></script>
+ <script src="~/js/aos.js"></script>
+ <script src="~/js/rangeslider.min.js"></script>
+ <script src="~/js/main.js"></script>
+ <script src="~/js/roberto.bundle.js"></script>
+ <script src="~/js/jarchim/jarchim.main.js"></script>
+    <script src="~/js/app/Home.js"></script>
+ <script src="~/js/app/Page.js"></script>
+ <script src="~/js/jarchim/dw_tooltip_c.js"></script>
+ <script src="~/js/jarchim/psd-date-time.js"></script>
+ <!-- Active -->
+ <script src="~/js/jarchim/psd-drawing.js"></script>
+ <script src="~/js/jarchim/psd-excel-json.js"></script>
+ <script src="~/js/jarchim/jarchim-form.js"></script>
+ <script src="~/js/jarchim/psd-input.js"></script>
+ <script src="~/js/jarchim/psd-js.js"></script>
+ <script src="~/js/default-assets/active.js"></script>
+ <script src="~/js/jarchim/psd-validate.js"></script>
+ <script src="~/js/BootstrapJalaliDatePicker/bootstrap-datepicker.fa.min.js"></script>
+ <script src="~/js/BootstrapJalaliDatePicker/bootstrap-datepicker.min.js"></script>
+ <script src="~/js/app/jquery.min.js"></script>
+ <script src="~/js/app/jquery.rateyo.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('input[type=datetime]').datepicker({ dateFormat: "yy/mm/dd", isRTL: true, showButtonPanel: true });
+    });
+ </script>
+  @RenderSection("crudScript", required: false)
+ @RenderSection("check", required: false)
+</body>
+</html>

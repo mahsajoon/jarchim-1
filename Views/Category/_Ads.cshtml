@@ -1,0 +1,29 @@
+﻿@model Jarchim.Models.mHome
+@{
+    Layout = "~/Views/Shared/_GLayout.cshtml";
+    Jarchim.Models.database.JarchimDb JarchimDb = new Jarchim.Models.database.JarchimDb();
+}
+@foreach (var item in Model.aAd)
+{
+    <div class="col-md-4 col-sm-6 col-xs-12 col">
+        <div class="blog-wrap mb-30">
+            <div class="blog-img">
+                <img src="../assets/images/ads/47ec1252.jpg" alt="" />
+            </div>
+            <div class="blog-content">
+
+                <h3><a href="blog-details.html">@item.ad_name</a></h3>
+                @*<p>وقد اتخذت الصفاء رائعة حيازة نفسي كامل، مثل هذه الصباح الحلو من الربيع التي أستمتع به</p>*@
+                <div class="blog-meta">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-money"></i>@item.ad_price</a></li>
+                        <li><a href="#"><i class="fa fa-comment"></i>@item.ad_visit</a></li>
+                        <li><a href="#"><i class="fa fa-heart"></i>@item.ad_like</a></li>
+                    </ul>
+                </div>
+                <a href="blog-details.html" class="btn-style">مشاهده و خرید</a>
+            </div>
+        </div>
+    </div>
+}
+

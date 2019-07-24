@@ -1,0 +1,15 @@
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\Jarchim.dll.config
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\Jarchim.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\Jarchim.pdb
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\EntityFramework.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\EntityFramework.SqlServer.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\MD.PersianDateTime.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\PersianDate.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\PersianDateTime.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\EntityFramework.xml
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\EntityFramework.SqlServer.xml
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\MD.PersianDateTime.xml
+C:\13980329\13980329\13980327\Jarchim\Jarchim\bin\PersianDateTime.xml
+C:\13980329\13980329\13980327\Jarchim\Jarchim\obj\Release\Jarchim.csprojResolveAssemblyReference.cache
+C:\13980329\13980329\13980327\Jarchim\Jarchim\obj\Release\Jarchim.dll
+C:\13980329\13980329\13980327\Jarchim\Jarchim\obj\Release\Jarchim.pdb
