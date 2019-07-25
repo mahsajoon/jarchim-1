@@ -14,12 +14,11 @@ namespace Jarchim.Controllers
   static int pGet = 18;
   static int pSkip = 0;
   // GET: Category
-  public ActionResult Ads(int page,string title)
+  public ActionResult Ads(int cat, int page,string title)
         {
             mHome vHome = new mHome();
             mAd vAd = new mAd();
-            vAd.ad_cat = page;
-            vHome = c.fGetAdsContent(pSkip, pGet, vAd);
+            vHome.aAd = c.fGetAdsContent(pSkip, pGet, cat);
             vHome.aTodayOffer = a.fAdList(pGet, pSkip, 13,0,0);
             vHome.vmAd = new mAd();
             vHome.vmAd.ad_cat = 2;

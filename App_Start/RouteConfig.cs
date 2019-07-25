@@ -28,12 +28,13 @@ defaults: new
  title = UrlParameter.Optional
 }
 );
-            routes.MapRoute("PostPaging2", "{controller}/{action}/{page}/{title}",
+            routes.MapRoute("PostPaging2", "{controller}/{action}/{cat}/{page}/{title}",
 defaults: new
 {
 controller = "Category",
 action = "Ads",
-page = "all",
+cat= "all",
+page = UrlParameter.Optional,
 title = UrlParameter.Optional
 }
 );

@@ -424,3 +424,18 @@ C:\Users\mahsa taheri\Desktop\pro\13980426\Jarchim\Jarchim\bin\PersianDateTime.x
 C:\Users\mahsa taheri\Desktop\pro\13980426\Jarchim\Jarchim\obj\Debug\Jarchim.csprojResolveAssemblyReference.cache
 C:\Users\mahsa taheri\Desktop\pro\13980426\Jarchim\Jarchim\obj\Debug\Jarchim.dll
 C:\Users\mahsa taheri\Desktop\pro\13980426\Jarchim\Jarchim\obj\Debug\Jarchim.pdb
+E:\13980426\Jarchim\Jarchim\bin\Jarchim.dll.config
+E:\13980426\Jarchim\Jarchim\bin\Jarchim.dll
+E:\13980426\Jarchim\Jarchim\bin\Jarchim.pdb
+E:\13980426\Jarchim\Jarchim\bin\EntityFramework.dll
+E:\13980426\Jarchim\Jarchim\bin\EntityFramework.SqlServer.dll
+E:\13980426\Jarchim\Jarchim\bin\MD.PersianDateTime.dll
+E:\13980426\Jarchim\Jarchim\bin\PersianDate.dll
+E:\13980426\Jarchim\Jarchim\bin\PersianDateTime.dll
+E:\13980426\Jarchim\Jarchim\bin\EntityFramework.xml
+E:\13980426\Jarchim\Jarchim\bin\EntityFramework.SqlServer.xml
+E:\13980426\Jarchim\Jarchim\bin\MD.PersianDateTime.xml
+E:\13980426\Jarchim\Jarchim\bin\PersianDateTime.xml
+E:\13980426\Jarchim\Jarchim\obj\Debug\Jarchim.csprojResolveAssemblyReference.cache
+E:\13980426\Jarchim\Jarchim\obj\Debug\Jarchim.dll
+E:\13980426\Jarchim\Jarchim\obj\Debug\Jarchim.pdb

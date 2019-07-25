@@ -34,8 +34,6 @@
             background-position: left -40px;
         }
     </style>
-
-
  <title>جارچیم</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,10 +51,8 @@
  <link href="~/style1.css" rel="stylesheet" />
  <link rel="stylesheet" href="~/css/style.css">
  <link href="~/css/BootstrapJalaliDatePicker/bootstrap-datepicker.min.css" rel="stylesheet" />
-
  <link href="~/Content/jquery.rateyo.min.css" rel="stylesheet" />
 </head>
-
 <body>
  <!-- /Preloader -->
  <div class="site-wrap">
@@ -75,7 +71,6 @@
      </form>
     </div>
    </div>
-
    <!-- Top Header Area Start -->
    <div class="top-header-area">
     <div class="container" style="max-width:1300px;">
@@ -123,7 +118,7 @@
           @foreach (var vCategory in daCategory.fGetCatList(0))
           {
            <li>
-            @Html.RouteLink(@vCategory.cat_title, "PostPaging2", new { action = "ads", controller = "category", page = (@vCategory.cat_id), title = @vCategory.cat_title }, new { })
+            @Html.RouteLink(@vCategory.cat_title, "PostPaging2", new { action = "ads", controller = "category",cat=(@vCategory.cat_id), page = (@vCategory.cat_id), title = @vCategory.cat_title }, new { })
            </li>
           }
          </ul>

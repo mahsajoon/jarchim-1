@@ -68,17 +68,9 @@
                 <div class="row">
  @foreach (var item in Model.aAd)
 {
-                    <div class="col-lg-4">
-                        <div class="d-block d-md-flex listing vertical">
-                              @foreach (var vImg in Model.aAdImg)
-  {
-      if (item.ad_id == vImg.img_id)
-      {
-            <a href="#" class="img d-block" style="background-image: url('/images/ads/@vImg.ad_img')"></a>
-                                      break;
-                                  }
-                              }
-                         
+                    <div class="col-lg-4" style="float:right;">
+                        <div class="d-block d-md-flex listing vertical">   
+            <a href="#" class="img d-block" style="background-image: url('/images/ads/@item.aAdImg[0].ad_img')"></a>     
                             <div class="lh-content">
                                 <span class="category">@item.cat_name</span>
                                 <a href="#" class="bookmark"><span class="icon-heart"></span></a>
@@ -92,7 +84,8 @@
                                     <span class="icon-star text-warning"></span>
                                     <span class="icon-star text-warning"></span>
                                     <span class="icon-star text-secondary"></span>
-                                    <span class="review">(@item.ad_visit بازدید)</span>
+                                    <span class="review" style="float: right;">(@item.ad_visit<span class="icon-eye" style="margin-left:5px;"></span>)</span>
+
                                 </p>
                             </div>
                         </div>
@@ -248,7 +241,8 @@
                                     <span class="icon-star text-warning"></span>
                                     <span class="icon-star text-warning"></span>
                                     <span class="icon-star text-secondary"></span>
-                                    <span class="review">(@vToday.ad_visit بازدید)</span>
+                                    <span class="review">(@vToday.ad_visit<span class="icon-eye" style="margin-left:5px;"></span>)</span>
+
                                 </p>
                             </div>
                         </div>

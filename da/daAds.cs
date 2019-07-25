@@ -138,7 +138,7 @@ namespace Jarchim.da
     //var deadline = new Date(Date.parse(new Date()) + 16 * 24 * 60 * 60 * 1000);
     vAds.timer_string = "" + vDays + " * " + vHours + " * " + vMinutes + " * " + vSeconds + " * 1000 " + "";
     var vAdImg = (from i in Db.tbl_img_ad
-                              where i.img_id.Equals(pAds.ad_id)
+                              where i.ad_id.Equals(pAds.ad_id)
                               select new mAdImg
                               {
                                   ad_img = i.ad_img,

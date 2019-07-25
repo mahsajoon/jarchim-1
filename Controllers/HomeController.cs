@@ -59,7 +59,7 @@ namespace Jarchim.Controllers
   {
    mHome vHome = new mHome();
    mAd vAd = new mAd();
-   vHome = c.fGetAdsContent(pSkip, pGet, pAd);
+   //vHome = c.fGetAdsContent(pSkip, pGet, pAd);
    vHome.aAd = new List<mAd>();
    vHome.aAd = a.fAdList(pGet, pSkip, pAd.ad_cat, pAd.ad_save_per, pAd.ad_city);
    vHome.vmAd = new mAd();
